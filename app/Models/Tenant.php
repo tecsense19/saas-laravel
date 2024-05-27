@@ -21,6 +21,15 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         ];
     }
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+    ];
+
     public function setPasswordAttribute($value) {
         return $this->attributes['password'] = bcrypt($value);
     }

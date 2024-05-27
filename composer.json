@@ -14,7 +14,8 @@
         "spatie/laravel-permission": "^6.4",
         "stancl/tenancy": "^3.8",
         "zalanihir/country-state-city": "^1.0",
-        "zanysoft/laravel-zip": "^2.0"
+        "zanysoft/laravel-zip": "^2.0",
+        "php-open-source-saver/jwt-auth": "^2.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

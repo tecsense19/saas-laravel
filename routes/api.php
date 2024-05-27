@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\{ HomeController, FeedBackController };
+// use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+// use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +19,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// Route::group(['prefix' => 'v1'], function () {
+// // Route::middleware('tenant')->group(function () {
+// // Route::middleware(['auth:sanctum', 'tenancy'])->group(function () {
+//     Route::post('/get/all/user', [HomeController::class, 'getAllUser']);
+// });
+
+Route::get('/v1/get/all/company', [HomeController::class, 'getAllCompany']);
+
+Route::middleware(['identifyTenant'])->group(function () {
+    Route::group(['prefix' => 'v1'], function () {
+        Route::post('/login', [HomeController::class, 'login']);
+        
+        Route::middleware(['userAuthentication'])->group(function () {
+            Route::post('/get/all/user', [HomeController::class, 'getAllUser']);
+
+            // FeedBack
+
+            Route::post('/create/feedback', [FeedBackController::class, 'createFeedback']);
+        });
+    });
 });

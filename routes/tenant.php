@@ -16,6 +16,7 @@ use App\Http\Controllers\App\{
     QRCodeController,
     ProductController,
     EventController,
+    VideoGalleryController
 };
 
 /*
@@ -109,6 +110,20 @@ Route::middleware([
             Route::post('events/store', [EventController::class, 'store'])->name('events.store');
             Route::get('check/event/name', [EventController::class, 'checkEventName'])->name('events.check');
             Route::post('events/delete', [EventController::class, 'delete'])->name('events.delete');
+
+            // Video
+            Route::get('video', [VideoGalleryController::class, 'index'])->name('video.index');
+            Route::post('video/list', [VideoGalleryController::class, 'list'])->name('video.list');
+            Route::post('video/gallery/store', [VideoGalleryController::class, 'store'])->name('video.store');
+            Route::get('check/video/title', [VideoGalleryController::class, 'checkTitle'])->name('video.title.check');
+            Route::post('video/delete', [VideoGalleryController::class, 'delete'])->name('video.delete');
+
+            // Gallery
+            Route::get('gallery', [VideoGalleryController::class, 'galleryIndex'])->name('gallery.index');
+            Route::post('gallery/list', [VideoGalleryController::class, 'galleryList'])->name('gallery.list');
+            Route::post('video/gallery/store', [VideoGalleryController::class, 'store'])->name('gallery.store');
+            Route::get('check/gallery/title', [VideoGalleryController::class, 'checkTitle'])->name('gallery.title.check');
+            Route::post('gallery/delete', [VideoGalleryController::class, 'delete'])->name('gallery.delete');
         });
 
         Route::get('js/{folder}/{filename}', function ($folder, $filename) {

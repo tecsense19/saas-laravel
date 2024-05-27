@@ -1,5 +1,10 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use PHPOpenSourceSaver\JWTAuth\Token;
+
 if (!function_exists('asset_url')) {
     function asset_url($path)
     {
@@ -15,6 +20,30 @@ if (!function_exists('asset_url')) {
 
         // return sprintf($baseUrlFormat, $subdomain, $port, ltrim('saasdemo/public/'.$path, '/'));
         return sprintf($baseUrlFormat, $subdomain, $port, ltrim($path, '/'));
+    }
+}
+
+if (!function_exists('extractToken')) {
+    function extractToken($request)
+    {
+        $tokenString = $request->header('Authorization');
+        if($tokenString)
+        {
+            // Extract the JWT token from the Authorization header
+            if (Str::startsWith($tokenString, 'Bearer ')) {
+                $tokenString = Str::substr($tokenString, 7);
+            }
+
+            // Create a Token object from the token string
+            $token = new Token($tokenString);
+
+            // Decode the JWT token
+            $payload = JWTAuth::manager()->decode($token);
+
+            return $payload;
+        }
+
+        return false;
     }
 }
 
