@@ -392,7 +392,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link @if(request()->is('events')) active @endif" href="{{ url('events') }}">
+                    <a class="menu-link @if(request()->is('feedback')) active @endif" href="{{ url('feedback') }}">
                     <span class="menu-icon">
                     <i class="ki-duotone ki-calendar-8 fs-2">
                     <span class="path1"></span>
@@ -403,10 +403,10 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">FeedBack Management</span>
+                    <span class="menu-title">Feedback Management</span>
                     </a>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('qrpoint') || request()->is('qrcode')) here show @endif menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('redeem') || request()->is('redeem/view/*')) here show @endif menu-accordion">
                     <span class="menu-link">
                     <span class="menu-icon">
                     <i class="ki-duotone ki-map fs-2">
@@ -420,7 +420,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
-                            <a class="menu-link @if(request()->is('qrpoint')) active @endif" href="{{ route('qrpoint.index') }}">
+                            <a class="menu-link @if(request()->is('redeem') || request()->is('redeem/view/*')) active @endif" href="{{ route('redeem.index') }}">
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>

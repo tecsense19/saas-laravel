@@ -25,6 +25,9 @@ class User extends Authenticatable implements  JWTSubject
         'name',
         'email',
         'password',
+        'country_code',
+        'mobile_no',
+        'mobile_otp',
         'profile_pic',
         'country_id',
         'state_id',
@@ -85,7 +88,7 @@ class User extends Authenticatable implements  JWTSubject
             return url('/').'/'.$value;
         }
 
-        return '';
+        return url('/') . '/public/uploads/blank-user.png';
     }
 
     public function bankAccount(): BelongsTo

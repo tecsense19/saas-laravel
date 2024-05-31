@@ -16,7 +16,9 @@ use App\Http\Controllers\App\{
     QRCodeController,
     ProductController,
     EventController,
-    VideoGalleryController
+    VideoGalleryController,
+    FeedBackController,
+    AccountManagement
 };
 
 /*
@@ -124,6 +126,18 @@ Route::middleware([
             Route::post('video/gallery/store', [VideoGalleryController::class, 'store'])->name('gallery.store');
             Route::get('check/gallery/title', [VideoGalleryController::class, 'checkTitle'])->name('gallery.title.check');
             Route::post('gallery/delete', [VideoGalleryController::class, 'delete'])->name('gallery.delete');
+
+            // Feedback
+            Route::get('feedback', [FeedBackController::class, 'index'])->name('feedback.index');
+            Route::post('feedback/list', [FeedBackController::class, 'list'])->name('feedback.list');
+            Route::post('feedback/delete', [FeedBackController::class, 'delete'])->name('feedback.delete');
+
+            // Account Management redeem
+            Route::get('redeem', [AccountManagement::class, 'index'])->name('redeem.index');
+            Route::post('redeem/list', [AccountManagement::class, 'list'])->name('redeem.list');
+            Route::get('redeem/view/{id}', [AccountManagement::class, 'view'])->name('redeem.view');
+            
+            Route::post('redeem/history/list', [AccountManagement::class, 'redeemHistory'])->name('redeem.history.list');
         });
 
         Route::get('js/{folder}/{filename}', function ($folder, $filename) {

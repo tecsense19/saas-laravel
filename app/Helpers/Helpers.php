@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use PHPOpenSourceSaver\JWTAuth\Token;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenInvalidException;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
+use App\Http\Controllers\Api\BaseController as BaseController;
 
 if (!function_exists('asset_url')) {
     function asset_url($path)
@@ -37,10 +41,27 @@ if (!function_exists('extractToken')) {
             // Create a Token object from the token string
             $token = new Token($tokenString);
 
-            // Decode the JWT token
-            $payload = JWTAuth::manager()->decode($token);
-
-            return $payload;
+            try {
+                // Decode the JWT token
+                $payload = JWTAuth::manager()->decode($token);
+                if(isset($payload['user_id']) && $payload['user_id'] == '')
+                {
+                    return 'Token is invalid! User id is missing.';
+                }
+                else
+                {
+                    return $payload;
+                }
+            } catch (TokenExpiredException $e) {
+                // Handle token expired exception
+                return 'Token has expired';
+            } catch (TokenInvalidException $e) {
+                // Handle token invalid exception
+                return 'Token is invalid';
+            } catch (JWTException $e) {
+                // Handle any other JWT exceptions
+                return 'Could not decode token';
+            }
         }
 
         return false;

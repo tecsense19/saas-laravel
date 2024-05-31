@@ -28,7 +28,7 @@ class Product extends Model
             return url('/').'/'.$value;
         }
 
-        return '';
+        return url('/') . '/public/uploads/product.png';
     }
 
     public function getProductCouponImageAttribute($value)

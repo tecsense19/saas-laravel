@@ -26,7 +26,7 @@ class Event extends Model
             return url('/').'/'.$value;
         }
 
-        return '';
+        return url('/') . '/public/uploads/event.png';
     }
     
     public function getQrCodeAttribute($value)

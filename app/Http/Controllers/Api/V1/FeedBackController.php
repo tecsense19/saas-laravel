@@ -30,7 +30,7 @@ class FeedBackController extends BaseController
             $input = $request->all();
 
             $extractToken = extractToken($request);
-            if($extractToken)
+            if(isset($extractToken['user_id']) && $extractToken['user_id'] != '')
             {
                 $validator = Validator::make($input, [
                     'comment' => 'required|string',
@@ -41,7 +41,7 @@ class FeedBackController extends BaseController
                 }
 
                 $feedbackArr = FeedBack::create([
-                    'user_id' => $extractToken['login_user_id'],
+                    'user_id' => $extractToken['user_id'],
                     'comment_text' => $request->comment
                 ]);
 
@@ -56,7 +56,7 @@ class FeedBackController extends BaseController
             }
             else
             {
-                return $this->sendError('Invalid user id.');    
+                return $this->sendError($extractToken);
             }
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());

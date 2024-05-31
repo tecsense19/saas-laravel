@@ -8,6 +8,10 @@ use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use PHPOpenSourceSaver\JWTAuth\Token;
 use App\Models\Tenant;
 use Illuminate\Support\Facades\DB;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenInvalidException;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
+use App\Http\Controllers\Api\BaseController as BaseController;
 
 class IdentifyTenant
 {
@@ -28,10 +32,20 @@ class IdentifyTenant
             // Create a Token object from the token string
             $token = new Token($tokenString);
 
-            // Decode the JWT token
-            $payload = JWTAuth::manager()->decode($token);
-
-            $tenantId = $payload['company_id'];
+            try {
+                // Decode the JWT token
+                $payload = JWTAuth::manager()->decode($token);
+                $tenantId = $payload['company_id'];
+            } catch (TokenExpiredException $e) {
+                // Handle token expired exception
+                return BaseController::sendError('Token has expired');
+            } catch (TokenInvalidException $e) {
+                // Handle token invalid exception
+                return BaseController::sendError('Token is invalid');
+            } catch (JWTException $e) {
+                // Handle any other JWT exceptions
+                return BaseController::sendError('Could not decode token');
+            }
         } 
 
         if($tenantId)

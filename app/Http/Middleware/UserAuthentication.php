@@ -25,9 +25,7 @@ class UserAuthentication {
             try {
                 if(!$user = JWTAuth::parseToken()->authenticate()) {
                     $data = [
-                        'status_code' => 400,
-                        'message' => 'Invalid User.',
-                        'data' => []
+                        'message' => 'Invalid User.'
                     ];
                     return BaseController::sendError($data['message']);
                 }
@@ -35,26 +33,21 @@ class UserAuthentication {
                     $token = JWTAuth::getToken();
                     JWTAuth::parseToken()->invalidate($token);
                     $data = [
-                        'status_code' => 401,
-                        'message' => 'Invalid Token.',
-                        'data' => []
+                        'message' => 'Invalid Token.'
                     ];
                     return BaseController::sendError($data['message']);
                 }
-            } catch (JWTException $e) {
+            } catch (\PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException $e) {
                 if ($e instanceof \PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException) {
                     $data = [
-                        'status_code' => 401,
                         'message' => 'Token Expired.',
                     ];
                 } elseif ($e instanceof \PHPOpenSourceSaver\JWTAuth\Exceptions\TokenInvalidException) {
                     $data = [
-                        'status_code' => 400,
                         'message' => 'Invalid Token.',
                     ];
                 } else {
                     $data = [
-                        'status_code' => 400,
                         'message' => 'Token not found.',
                     ];
                 }
