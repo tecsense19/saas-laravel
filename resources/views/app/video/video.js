@@ -19,6 +19,9 @@ $( document ).ready(function()
                         },
                         title: function() {
                             return $('#title').val();
+                        },
+                        video_gallery_type: function() {
+                            return 'video';
                         }
                     }
                 }

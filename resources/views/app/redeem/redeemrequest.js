@@ -2,6 +2,22 @@ $( document ).ready(function()
 {
     redeemList();
 
+    $("#redeemDataImportForm").validate({
+        rules: {
+            file: {
+                required: true,
+            }
+        },
+        messages: {
+            file: {
+                required: "File is required!",
+            },
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
     $('body').on('click', '.pagination a', function(e) 
     {
         e.preventDefault();
@@ -17,7 +33,7 @@ function redeemList()
     $.ajax({
         type:'post',
         headers: {'X-CSRF-TOKEN': jQuery('input[name=_token]').val()},
-        url: routes.redeem_list,
+        url: routes.redeem_request_list,
         data: { search: search },
         success:function(data)
         {

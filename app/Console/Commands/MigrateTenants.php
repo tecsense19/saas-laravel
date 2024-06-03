@@ -26,6 +26,7 @@ class MigrateTenants extends Command
      */
     public function handle()
     {
+        // php artisan app:migrate-tenants
         Tenant::all()->each(function ($tenant) {
             $this->info("Migrating tenant: {$tenant->name}");
 

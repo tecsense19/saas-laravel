@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body pt-0 table-responsive videoDataList">
+                    <div class="card-body pt-0 table-responsive redeemDataList">
                         
                     </div>
                 </div>

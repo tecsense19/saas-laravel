@@ -20,6 +20,9 @@ return new class extends Migration
             $table->decimal('qr_amount', 10, 2)->nullable();
             $table->enum('scan_type', ['Credit', 'Debit'])->default('Credit');
             $table->datetime('scan_date')->nullable();
+            $table->datetime('paid_date')->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->enum('paid_status', ['Pending', 'Success'])->default('Pending');
             $table->unsignedBigInteger('created_by')->nullable()->index();
             $table->unsignedBigInteger('updated_by')->nullable()->index();
             $table->timestamps();

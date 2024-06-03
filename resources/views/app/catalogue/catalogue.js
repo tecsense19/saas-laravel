@@ -1,57 +1,33 @@
 $( document ).ready(function() 
-{
-    $('.link').hide();
-    $('.file').hide();
-    
-    $("#videoGalleryForm").validate({
+{    
+    $("#catalogueForm").validate({
         rules: {
-            title: {
+            catalogue_title: {
                 required: true,
                 remote: {
-                    url: routes.gallery_name_check,
+                    url: routes.catalogue_name_check,
                     type: 'get',
                     async: false,
                     dataType:'json',
                     data: {
-                        video_gallery_id: function() {
+                        catalogue_id: function() {
                             // Return the ID value you want to pass
-                            return $('#video_gallery_id').val();
+                            return $('#catalogue_id').val();
                         },
-                        title: function() {
-                            return $('#title').val();
-                        },
-                        video_gallery_type: function() {
-                            return 'gallery';
+                        catalogue_title: function() {
+                            return $('#catalogue_title').val();
                         }
                     }
                 }
             },
-            selected_type: {
-                required: true
-            },
-            selected_link: {
-                required: function() {
-                    return $('input[name="selected_type"]:checked').val() === 'link';
-                },
-                url: true
-            },
             selected_file: {
-                required: function() {
-                    return $('input[name="selected_type"]:checked').val() === 'file';
-                }
+                required: true
             }
         },
         messages: {
-            title: {
-                required: "Title is required!",
+            catalogue_title: {
+                required: "Catalogue title is required!",
                 remote: "Title already exist!"
-            },
-            selected_type: {
-                required: "Type is required!"
-            },
-            selected_link: {
-                required: "Link is required!",
-                url: "Please enter a valid URL"
             },
             selected_file: {
                 required: "File is required!"
@@ -60,7 +36,7 @@ $( document ).ready(function()
         submitHandler: function(form) {
             form.submit();
             // Show loading indication
-            submitButton = document.getElementById('videoGallerySubmit');
+            submitButton = document.getElementById('catalogueSubmit');
             submitButton.setAttribute('data-kt-indicator', 'on');
             submitButton.disabled = true;
 
@@ -71,44 +47,24 @@ $( document ).ready(function()
         }
     });
 
-    videoList();
+    catalogueList();
 
     $('body').on('click', '.pagination a', function(e) 
     {
         e.preventDefault();
 
         var url = $(this).attr('href');
-        getPerPageVideoList(url);
-    });
-
-    $('.selected-radio').on('change', function(e) {
-        e.preventDefault();  // Prevent the event from bubbling up to the body
-
-        var type = $(this).val();
-        if(type == 'link')
-        {
-            $('.link').show();
-            $('#selected_link').attr('required', true);
-            $('.file').hide();
-            $('#selected_file').removeAttr('required');
-        }
-        else
-        {
-            $('.link').hide();
-            $('#selected_link').removeAttr('required');
-            $('.file').show();
-            $('#selected_file').attr('required', true);
-        }
+        getPerPageCatalogueList(url);
     });
 });
 
-function videoList()
+function catalogueList()
 {
     var search = $('#search').val();
     $.ajax({
         type:'post',
         headers: {'X-CSRF-TOKEN': jQuery('input[name=_token]').val()},
-        url: routes.gallery_list,
+        url: routes.catalogue_list,
         data: { search: search },
         success:function(data)
         {
@@ -117,7 +73,7 @@ function videoList()
     });
 }
 
-function getPerPageVideoList(get_pagination_url) 
+function getPerPageCatalogueList(get_pagination_url) 
 {
     var search = $('#search').val();
     $.ajax({
@@ -133,61 +89,43 @@ function getPerPageVideoList(get_pagination_url)
 }
 
 $('body').on('keyup', '#search', function (e) {
-    videoList();
+    catalogueList();
 });
 
 $('body').on('click', '#clear-button', function(e) {
     $('#search').val('');
-    videoList();
+    catalogueList();
 });
 
-$('body').on('click', '.add_video_gallery, .close_modal', function(e) {
-    $('.modal_title').text('Add Gallery');
-    $('#from_code-error').text('');
-    $('#to_code-error').text('');
-    $('#product_id-error').text('');
-    $('#qr_code_id').val('');
-    $('#videoGalleryForm')[0].reset();
-    $('#inputContainer').html('');
-    $("#to_code").removeAttr('min');
-    $('#video_gallery_type').val('gallery');
+$('body').on('click', '.add_catalogue, .close_modal', function(e) {
+    $('.modal_title').text('Create Catalogue');
+    $('#catalogue_id').val('');
+    $('#catalogueForm')[0].reset();
+    $('.displayOldFile').html('');
 });
 
-function editGallery(ids, data)
+function editCatalogue(ids, data)
 {
-    $('#inputContainer').html('');
-    $('#videoGalleryForm')[0].reset();
+    $('#catalogueForm')[0].reset();
     // $('#variant_name-error').text('');
-    $('#kt_modal_create_video_gallery').modal('show');
-    $('#video_gallery_id').val(ids);
-    $('.modal_title').text('Edit Gallery');
-    $('#video_gallery_type').val('gallery');
+    $('#kt_modal_catalogue').modal('show');
+    $('#catalogue_id').val(ids);
+    $('.modal_title').text('Edit Catalogue');
 
     // Parse the JSON data
     var data = $.parseJSON(data);
     
-    $('#title').val(data.title);
-    $('#short_description').val(data.short_description);
-    $('#full_description').val(data.full_description);
-    $('#video_gallery_type').val(data.video_gallery_type);
-    $('#selected_type').val(data.file_type);
-    if(data.file_type == 'link')
+    $('#catalogue_title').val(data.catalogue_title);
+    if(data.file_path)
     {
-        $('#link').prop('checked', true);
-        $('#selected_link').val(data.file_url);
-        $('#link').trigger('change');
-    }
-    else
-    {
-        $('#file').prop('checked', true);
-        $('#file').trigger('change');
+        $('.displayOldFile').html('<iframe src="'+data.file_path+'" style="max-width:200px"></iframe>');
     }
 }
 
-function deleteGallery(video_gallery_id) {
+function deleteCatalogue(catalogue_id) {
     Swal.fire({
         title: 'Are you sure?',
-        text: "Delete this gallery.",
+        text: "Delete this catalogue.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',
@@ -211,8 +149,8 @@ function deleteGallery(video_gallery_id) {
             $.ajax({
                 type:'post',
                 headers: {'X-CSRF-TOKEN': jQuery('input[name=_token]').val()},
-                url: routes.gallery_delete,
-                data: { video_gallery_id: video_gallery_id },
+                url: routes.catalogue_delete,
+                data: { catalogue_id: catalogue_id },
                 success:function(response)
                 {
                     Swal.close();
@@ -226,7 +164,7 @@ function deleteGallery(video_gallery_id) {
                         allowEscapeKey: false
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            videoList();
+                            catalogueList();
                         }
                     });
                 },

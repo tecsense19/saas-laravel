@@ -53,6 +53,7 @@ Route::middleware(['identifyTenant'])->group(function () {
 
             // Barcode
             Route::post('scan/barcode', [BarcodeController::class, 'scanCode']);
+            Route::post('redeem/request', [BarcodeController::class, 'redeemRequest']);
         });
     });
 });

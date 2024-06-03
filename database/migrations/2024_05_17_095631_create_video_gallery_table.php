@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('video_gallery', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique()->nullable();
+            $table->string('title')->nullable();
             $table->text('short_description')->nullable();
             $table->text('full_description')->nullable();
             $table->enum('video_gallery_type', ['gallery', 'video'])->nullable();

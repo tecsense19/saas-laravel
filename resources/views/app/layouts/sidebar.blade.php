@@ -406,7 +406,7 @@
                     <span class="menu-title">Feedback Management</span>
                     </a>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('redeem') || request()->is('redeem/view/*')) here show @endif menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('redeem') || request()->is('redeem/view/*') || request()->is('redeem/request')) here show @endif menu-accordion">
                     <span class="menu-link">
                     <span class="menu-icon">
                     <i class="ki-duotone ki-map fs-2">
@@ -428,22 +428,29 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link @if(request()->is('qrcode')) active @endif" href="{{ route('qrcode.index') }}">
+                            <a class="menu-link @if(request()->is('redeem/request')) active @endif" href="{{ route('redeem.request') }}">
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Export Redeem Data</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link @if(request()->is('qrcode')) active @endif" href="{{ route('qrcode.index') }}">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Import Redeem Data</span>
+                            <span class="menu-title">Import/Export Redeem Data</span>
                             </a>
                         </div>
                     </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link @if(request()->is('catalogue')) active @endif" href="{{ url('catalogue') }}">
+                    <span class="menu-icon">
+                    <i class="ki-duotone ki-calendar-8 fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                    <span class="path6"></span>
+                    </i>
+                    </span>
+                    <span class="menu-title">Our Catalogue</span>
+                    </a>
                 </div>
                 @endrole
                 <!-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

@@ -18,7 +18,8 @@ use App\Http\Controllers\App\{
     EventController,
     VideoGalleryController,
     FeedBackController,
-    AccountManagement
+    AccountManagement,
+    OurCatalogueController
 };
 
 /*
@@ -138,6 +139,18 @@ Route::middleware([
             Route::get('redeem/view/{id}', [AccountManagement::class, 'view'])->name('redeem.view');
             
             Route::post('redeem/history/list', [AccountManagement::class, 'redeemHistory'])->name('redeem.history.list');
+
+            Route::get('redeem/request', [AccountManagement::class, 'redeemRequest'])->name('redeem.request');
+            Route::post('redeem/request/list', [AccountManagement::class, 'redeemRequestList'])->name('redeem.request.list');
+            Route::get('export/redemption', [AccountManagement::class, 'exportRedemption'])->name('export.redemption');
+            Route::post('import/redemption', [AccountManagement::class, 'importRedemption'])->name('import.redemption');
+
+            // Our Catalogue
+            Route::get('catalogue', [OurCatalogueController::class, 'index'])->name('catalogue.index');
+            Route::post('catalogue/list', [OurCatalogueController::class, 'list'])->name('catalogue.list');
+            Route::post('catalogue/store', [OurCatalogueController::class, 'store'])->name('catalogue.store');
+            Route::get('check/catalogue/title', [OurCatalogueController::class, 'checkTitle'])->name('catalogue.title.check');
+            Route::post('catalogue/delete', [OurCatalogueController::class, 'delete'])->name('catalogue.delete');
         });
 
         Route::get('js/{folder}/{filename}', function ($folder, $filename) {

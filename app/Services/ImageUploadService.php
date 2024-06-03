@@ -31,9 +31,12 @@ class ImageUploadService
         $imagePath = $path . $filename;
 
         // Handle existing image
-        $existingImagePath = $existingModel->$columnName;
-        if ($existingImagePath && File::exists(public_path($existingImagePath))) {
-            File::delete(public_path($existingImagePath));
+        if ($existingModel->$columnName && $existingModel->$columnName) {
+            $proFilePath = $existingModel->$columnName;
+            $proPath = substr(strstr($proFilePath, 'public/'), strlen('public/'));
+            if (file_exists(public_path('/public/'.$proPath))) {
+                \File::delete(public_path('/public/'.$proPath));
+            }
         }
 
         // Update model with new image path

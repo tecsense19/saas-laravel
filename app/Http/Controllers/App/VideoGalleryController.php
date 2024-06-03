@@ -12,8 +12,17 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 
+use App\Services\ImageUploadService;
+
 class VideoGalleryController extends Controller
 {
+    protected $imageUploadService;
+
+    public function __construct(ImageUploadService $imageUploadService)
+    {
+        $this->imageUploadService = $imageUploadService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -36,11 +45,11 @@ class VideoGalleryController extends Controller
         // Check if a variant with the given name exists
         if($videoGalleryId)
         {
-            $checkTitle = VideoGallery::where('title', $title)->where('id', '!=', $videoGalleryId)->exists();
+            $checkTitle = VideoGallery::where('title', $title)->where('video_gallery_type', $request->video_gallery_type)->where('id', '!=', $videoGalleryId)->exists();
         }
         else
         {
-            $checkTitle = VideoGallery::where('title', $title)->exists();
+            $checkTitle = VideoGallery::where('title', $title)->where('video_gallery_type', $request->video_gallery_type)->exists();
         }
 
         // Return JSON response indicating if variant name is unique
@@ -112,16 +121,9 @@ class VideoGalleryController extends Controller
 
             if($file = $request->file('selected_file'))
             {
-                $path = $request->video_gallery_type == 'video' ? 'public/uploads/video/' : 'public/uploads/gallery/';
+                $folder = $request->video_gallery_type == 'video' ? 'video' : 'gallery';
 
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $file->move($path, $filename);
-
-                $img = 'public/uploads/video/' . $filename;
-
-                VideoGallery::where('id', $ids)->update([
-                    'file_url' => $img,
-                ]);
+                $result = $this->imageUploadService->upload(VideoGallery::class, 'file_url', $folder, $file, $ids);
             }
 
             if($request->selected_type == 'link') {
@@ -147,16 +149,9 @@ class VideoGalleryController extends Controller
 
             if($file = $request->file('selected_file'))
             {
-                $path = $request->video_gallery_type == 'video' ? 'public/uploads/video/' : 'public/uploads/gallery/';
+                $folder = $request->video_gallery_type == 'video' ? 'video' : 'gallery';
 
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $file->move($path, $filename);
-
-                $img = 'public/uploads/video/' . $filename;
-
-                VideoGallery::where('id', $lastEntry->id)->update([
-                    'file_url' => $img,
-                ]);
+                $result = $this->imageUploadService->upload(VideoGallery::class, 'file_url', $folder, $file, $lastEntry->id);
             }
 
             $message = $request->video_gallery_type == 'video' ? 'Video added successfully.' : 'Gallery added successfully.';

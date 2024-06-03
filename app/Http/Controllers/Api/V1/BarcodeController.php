@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\{ ScanBarcode, GeneratedQR };
+use App\Models\{ ScanBarcode, GeneratedQR, BankAccount };
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -76,6 +76,63 @@ class BarcodeController extends BaseController
 
                 // Return a successful response with the scan details
                 return $this->sendResponse($scanBarcodeArr, 'Barcode scanned successfully.');
+            } else {
+                // If user_id is not found in the token, return the token extraction error
+                return $this->sendError($extractToken);
+            }
+        } catch (\Exception $e) {
+            // Catch any exception and return the error message
+            return $this->sendError($e->getMessage());
+        }
+    }
+
+    public function redeemRequest(Request $request)
+    {
+        try {
+            // Get all input data from the request
+            $input = $request->all();
+
+            // Extract token and check if user_id exists
+            $extractToken = extractToken($request);
+            if (isset($extractToken['user_id']) && $extractToken['user_id'] != '') {               
+                
+                // Validate the incoming request data
+                $validator = Validator::make($input, [
+                    'total_point' => 'required|numeric|gt:0',
+                ]);
+
+                // If validation fails, return the first error message
+                if ($validator->fails()) {
+                    return $this->sendError($validator->errors()->first());
+                }
+
+                $checkBankAccount = BankAccount::where('user_id', $extractToken['user_id'])->first();
+                if(!$checkBankAccount) {
+                    return $this->sendError('Please update your bank account details for redeem amount.');
+                }                
+
+                $totalCredit = ScanBarcode::where('scan_type', 'Credit')->where('user_id', $extractToken['user_id'])->sum('total_point');
+                $totalDebit = ScanBarcode::where('scan_type', 'Debit')->where('user_id', $extractToken['user_id'])->sum('total_point');
+                $total = ScanBarcode::where('user_id', $extractToken['user_id'])->sum('total_point');
+
+                $totalCrAmount = ($totalCredit - $totalDebit);
+
+                if($totalCrAmount < $request->total_point)
+                {
+                    return $this->sendError('You have not sufficient balance.');
+                }
+
+                // Create a new scan record
+                $redeemArr = ScanBarcode::create([
+                    'user_id' => $extractToken['user_id'],
+                    'total_point' => $request->total_point,
+                    'scan_type' => 'Debit',
+                    'scan_date' => now(), // Use Laravel's helper for current timestamp
+                    'created_by' => $extractToken['user_id']
+                ]);
+
+                // Return a successful response with the scan details
+                return $this->sendResponse($redeemArr, 'Redeem request send successfully.');
             } else {
                 // If user_id is not found in the token, return the token extraction error
                 return $this->sendError($extractToken);
