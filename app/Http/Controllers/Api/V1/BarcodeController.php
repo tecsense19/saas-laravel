@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\{ ScanBarcode, GeneratedQR, BankAccount };
+use App\Models\{ ScanBarcode, GeneratedQR, BankAccount, Event, EventUsers };
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -133,6 +133,65 @@ class BarcodeController extends BaseController
 
                 // Return a successful response with the scan details
                 return $this->sendResponse($redeemArr, 'Redeem request send successfully.');
+            } else {
+                // If user_id is not found in the token, return the token extraction error
+                return $this->sendError($extractToken);
+            }
+        } catch (\Exception $e) {
+            // Catch any exception and return the error message
+            return $this->sendError($e->getMessage());
+        }
+    }
+
+    public function scanEventBarcode(Request $request)
+    {
+        try {
+            // Get all input data from the request
+            $input = $request->all();
+
+            // Extract token and check if user_id exists
+            $extractToken = extractToken($request);
+            if (isset($extractToken['user_id']) && $extractToken['user_id'] != '') {
+                
+                // Validate the incoming request data
+                $validator = Validator::make($input, [
+                    'event_uuid' => 'required|string',
+                ]);
+
+                // If validation fails, return the first error message
+                if ($validator->fails()) {
+                    return $this->sendError($validator->errors()->first());
+                }
+
+                // Retrieve the barcode details along with associated product and QR point
+                $barcode = Event::where('event_uuid', $request->event_uuid)
+                                      ->first();
+
+                // If barcode is not found, return an error
+                if (!$barcode) {
+                    return $this->sendError('Invalid barcode.');
+                }
+
+                // Check if the barcode has already been scanned by the user
+                $alreadyScanned = EventUsers::where([
+                    'user_id' => $extractToken['user_id'],
+                    'event_id' => $barcode->id
+                ])->exists();
+
+                // If already scanned, return an error
+                if ($alreadyScanned) {
+                    return $this->sendError('This barcode has already been scanned.');
+                }
+
+                // Create a new scan record
+                $scanBarcodeArr = EventUsers::create([
+                    'user_id' => $extractToken['user_id'],
+                    'event_id' => $barcode->id,
+                    'event_join_date' => now()
+                ]);
+
+                // Return a successful response with the scan details
+                return $this->sendResponse($scanBarcodeArr, 'Event join successfully.');
             } else {
                 // If user_id is not found in the token, return the token extraction error
                 return $this->sendError($extractToken);
