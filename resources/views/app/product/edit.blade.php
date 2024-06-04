@@ -318,7 +318,7 @@
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <a type="reset" href="{{ url('product') }}" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</a>
-                                        <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
+                                        <button type="submit" id="productSubmit" class="btn btn-primary">
                                             <span class="indicator-label">Save</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -400,6 +400,10 @@
                     },
                     submitHandler: function(form) {
                         form.submit();
+
+                        submitButton = document.getElementById('productSubmit');
+                        submitButton.setAttribute('data-kt-indicator', 'on');
+                        submitButton.disabled = true;
                     }
                 });
 

@@ -192,7 +192,7 @@
                                         <select name="state_id" id="state_id" aria-label="Select a State" data-control="select2" data-placeholder="Select a state..." class="form-control form-select form-select-solid form-select-lg fw-semibold mt-1 w-full"  data-hide-search="true" style="width: 100%;">
                                             <option value="">Select State</option>
                                         </select>
-                                        <label id="state_id-error" class="error" for="state_id">City is required!</label>
+                                        <label id="state_id-error" class="error" for="state_id"></label>
                                         <x-input-error :messages="$errors->get('state_id')" class="mt-2" />
                                     </div>
                                 </div>
@@ -211,7 +211,7 @@
                                         <select name="city_id" id="city_id" aria-label="Select a City" data-control="select2" data-placeholder="Select a city..." class="form-control form-select form-select-solid form-select-lg fw-semibold mt-1 w-full"  data-hide-search="true" style="width: 100%;">
                                             <option value="">Select City</option>
                                         </select>
-                                        <label id="city_id-error" class="error" for="city_id">City is required!</label>
+                                        <label id="city_id-error" class="error" for="city_id"></label>
                                         <x-input-error :messages="$errors->get('city_id')" class="mt-2" />
                                     </div>
                                 </div>
@@ -250,7 +250,7 @@
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5 close_modal" type="reset" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" id="" class="btn btn-primary">
+                                <button type="submit" id="eventSubmit" class="btn btn-primary">
                                     <span class="indicator-label">Save Changes</span>
                                     <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

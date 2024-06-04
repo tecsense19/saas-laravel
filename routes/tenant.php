@@ -19,7 +19,8 @@ use App\Http\Controllers\App\{
     VideoGalleryController,
     FeedBackController,
     AccountManagement,
-    OurCatalogueController
+    OurCatalogueController,
+    UserReportController
 };
 
 /*
@@ -151,6 +152,11 @@ Route::middleware([
             Route::post('catalogue/store', [OurCatalogueController::class, 'store'])->name('catalogue.store');
             Route::get('check/catalogue/title', [OurCatalogueController::class, 'checkTitle'])->name('catalogue.title.check');
             Route::post('catalogue/delete', [OurCatalogueController::class, 'delete'])->name('catalogue.delete');
+
+            // Reports
+            Route::get('user/report', [UserReportController::class, 'index'])->name('user.report.index');
+            Route::post('user/report/list', [UserReportController::class, 'list'])->name('user.report.list');
+            Route::post('user/report/export', [UserReportController::class, 'usersReportExport'])->name('user.report.export');
         });
 
         Route::get('js/{folder}/{filename}', function ($folder, $filename) {
@@ -180,6 +186,7 @@ Route::middleware([
         Route::get('/get/cities/{stateId}', [LocationController::class, 'getCities'])->name('city.list');
 
         Route::get('/get/states', [LocationController::class, 'getAllStates'])->name('all.state.list');
+        Route::get('/get/cities', [LocationController::class, 'getAllCities'])->name('all.city.list');
     });
     
     require __DIR__.'/tenant-auth.php';

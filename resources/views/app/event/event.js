@@ -81,6 +81,10 @@ $( document ).ready(function()
         },
         submitHandler: function(form) {
             form.submit();
+
+            submitButton = document.getElementById('eventSubmit');
+            submitButton.setAttribute('data-kt-indicator', 'on');
+            submitButton.disabled = true;
         }
     });
 

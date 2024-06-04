@@ -86,7 +86,7 @@
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5 close_modal" type="reset" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" id="" class="btn btn-primary">
+                                <button type="submit" id="redeemQrSubmit" class="btn btn-primary">
                                     <span class="indicator-label">Import</span>
                                     <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

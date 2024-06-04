@@ -49,10 +49,21 @@ class LocationController extends Controller
         ];
         return response()->json($response);
     }
-
+    
     public function getCities($stateId)
     {
         $cities = City::where('state_id', $stateId)->get();
+        // Create an associative array with the "state" key
+        $response = [
+            'status' => true,
+            'data' => $cities, // Add your additional data here
+        ];
+        return response()->json($response);
+    }
+
+    public function getAllCities()
+    {
+        $cities = City::all();
         // Create an associative array with the "state" key
         $response = [
             'status' => true,

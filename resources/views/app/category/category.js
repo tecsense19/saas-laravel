@@ -29,6 +29,10 @@ $( document ).ready(function()
         },
         submitHandler: function(form) {
             form.submit();
+
+            submitButton = document.getElementById('categorySubmit');
+            submitButton.setAttribute('data-kt-indicator', 'on');
+            submitButton.disabled = true;
         }
     });
 
