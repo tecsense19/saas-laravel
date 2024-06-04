@@ -12,7 +12,7 @@
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Multipurpose</h1>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -28,6 +28,146 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-fluid">
+                <div class="row g-5 g-xl-10">
+                    <div class="col-sm-6 col-xl-2 mb-xl-10">
+                        <div class="card">
+                            <a href="{{ url('users') }}">
+                                <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                                    <div class="m-0">
+                                        <img src="{{ asset_url('app/media/svg/avatars/blank.svg') }}" class="w-35px" alt="">
+                                    </div>
+                                    <div class="d-flex flex-column my-7">
+                                        <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{ $totalUser }}</span>
+                                        <div class="m-0">
+                                            <span class="fw-semibold fs-6 text-gray-400">Users</span>
+                                        </div>
+                                    </div>
+                                    <!-- <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>2.1%
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-2 mb-xl-10">
+                        <div class="card">
+                            <a href="{{ url('product') }}">
+                                <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                                    <div class="m-0">
+                                        <img src="{{ asset_url('app/media/svg/avatars/blank.svg') }}" class="w-35px" alt="">
+                                    </div>
+                                    <div class="d-flex flex-column my-7">
+                                        <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{ $totalProduct }}</span>
+                                        <div class="m-0">
+                                            <span class="fw-semibold fs-6 text-gray-400">Products</span>
+                                        </div>
+                                    </div>
+                                    <!-- <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>2.1%
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-2 mb-xl-10">
+                        <div class="card">
+                            <a href="{{ url('events') }}">
+                                <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                                    <div class="m-0">
+                                        <img src="{{ asset_url('app/media/svg/avatars/blank.svg') }}" class="w-35px" alt="">
+                                    </div>
+                                    <div class="d-flex flex-column my-7">
+                                        <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{ $totalEvent }}</span>
+                                        <div class="m-0">
+                                            <span class="fw-semibold fs-6 text-gray-400">Events</span>
+                                        </div>
+                                    </div>
+                                    <!-- <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>2.1%
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-2 mb-xl-10">
+                        <div class="card">
+                            <a href="{{ url('video') }}">
+                                <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                                    <div class="m-0">
+                                        <img src="{{ asset_url('app/media/svg/avatars/blank.svg') }}" class="w-35px" alt="">
+                                    </div>
+                                    <div class="d-flex flex-column my-7">
+                                        <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{ $totalVideo }}</span>
+                                        <div class="m-0">
+                                            <span class="fw-semibold fs-6 text-gray-400">Video</span>
+                                        </div>
+                                    </div>
+                                    <!-- <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>2.1%
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-2 mb-xl-10">
+                        <div class="card">
+                            <a href="{{ url('gallery') }}">
+                                <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                                    <div class="m-0">
+                                        <img src="{{ asset_url('app/media/svg/avatars/blank.svg') }}" class="w-35px" alt="">
+                                    </div>
+                                    <div class="d-flex flex-column my-7">
+                                        <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{ $totalGallery }}</span>
+                                        <div class="m-0">
+                                            <span class="fw-semibold fs-6 text-gray-400">Gallery</span>
+                                        </div>
+                                    </div>
+                                    <!-- <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>2.1%
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-2 mb-xl-10">
+                        <div class="card">
+                            <a href="{{ url('feedback') }}">
+                                <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                                    <div class="m-0">
+                                        <img src="{{ asset_url('app/media/svg/avatars/blank.svg') }}" class="w-35px" alt="">
+                                    </div>
+                                    <div class="d-flex flex-column my-7">
+                                        <span class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2">{{ $totalFeedback }}</span>
+                                        <div class="m-0">
+                                            <span class="fw-semibold fs-6 text-gray-400">FeedBack</span>
+                                        </div>
+                                    </div>
+                                    <!-- <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>2.1%
+                                    </span> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
                     <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
                         <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end h-md-50 mb-5 mb-xl-10" style="background-color: #F1416C;background-image:url('{{ asset_url('app/media/patterns/vector-1.png') }}')">

@@ -45,12 +45,17 @@ Route::middleware([
     //     return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     // });
     Route::get('/', function () {
-        return view('app.auth.login');
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        } else {
+            return view('app.auth.login');
+        }
     });
 
-    Route::get('/dashboard', function () {
-        return view('app.dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('app.dashboard');
+    // })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
     
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

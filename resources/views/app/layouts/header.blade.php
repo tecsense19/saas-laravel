@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="../../demo1/dist/index.html" class="d-lg-none">
+            <a href="{{ route('dashboard') }}" class="d-lg-none">
             <img alt="Logo" src="{{ asset_url('app/media/logos/default-small.svg') }}" class="h-30px" />
             </a>
         </div>
@@ -28,7 +28,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 mb-3">
                                                 <div class="menu-item p-0 m-0">
-                                                    <a href="../../demo1/dist/index.html" class="menu-link active">
+                                                    <a href="{{ route('dashboard') }}" class="menu-link active">
                                                     <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
                                                     <i class="ki-duotone ki-element-11 text-primary fs-1">
                                                     <span class="path1"></span>

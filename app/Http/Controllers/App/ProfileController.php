@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Models\{ User, Product, Event, VideoGallery, Feedback };
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,6 +13,18 @@ use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
+    public function index(Request $request): View
+    {
+        $totalUser = User::count();
+        $totalProduct = Product::count();
+        $totalEvent = Event::count();
+        $totalVideo = VideoGallery::where('video_gallery_type', 'video')->count();
+        $totalGallery = VideoGallery::where('video_gallery_type', 'gallery')->count();
+        $totalFeedback = Feedback::count();
+
+        return view('app.dashboard', compact('totalUser', 'totalProduct', 'totalEvent', 'totalVideo', 'totalGallery', 'totalFeedback'));
+    }
+
     /**
      * Display the user's profile form.
      */
