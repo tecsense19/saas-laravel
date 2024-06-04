@@ -20,7 +20,8 @@ use App\Http\Controllers\App\{
     FeedBackController,
     AccountManagement,
     OurCatalogueController,
-    UserReportController
+    UserReportController,
+    EventReportController
 };
 
 /*
@@ -157,6 +158,10 @@ Route::middleware([
             Route::get('user/report', [UserReportController::class, 'index'])->name('user.report.index');
             Route::post('user/report/list', [UserReportController::class, 'list'])->name('user.report.list');
             Route::post('user/report/export', [UserReportController::class, 'usersReportExport'])->name('user.report.export');
+
+            Route::get('event/report', [EventReportController::class, 'index'])->name('event.report.index');
+            Route::post('event/report/list', [EventReportController::class, 'list'])->name('event.report.list');
+            Route::post('event/report/export', [EventReportController::class, 'eventReportExport'])->name('event.report.export');
         });
 
         Route::get('js/{folder}/{filename}', function ($folder, $filename) {

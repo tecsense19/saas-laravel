@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
@@ -38,13 +38,18 @@ class Event extends Model
         return '';
     }
 
-    public function states(): HasMany
+    public function states(): BelongsTo
     {
-        return $this->hasMany(State::class);
+        return $this->belongsTo(State::class, 'state_id', 'id');
     }
 
-    public function cities(): HasManyThrough
+    public function cities(): BelongsTo
     {
-        return $this->hasManyThrough(City::class, State::class);
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+    
+    public function getEventUser(): HasMany
+    {
+        return $this->HasMany(EventUsers::class, 'event_id', 'id');
     }
 }

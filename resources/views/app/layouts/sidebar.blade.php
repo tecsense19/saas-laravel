@@ -452,7 +452,7 @@
                     <span class="menu-title">Our Catalogue</span>
                     </a>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('user/report') || request()->is('qrcode')) here show @endif menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('user/report') || request()->is('event/report')) here show @endif menu-accordion">
                     <span class="menu-link">
                     <span class="menu-icon">
                     <i class="ki-duotone ki-map fs-2">
@@ -470,11 +470,11 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Users Reports</span>
+                            <span class="menu-title">User Reports</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link @if(request()->is('qrcode')) active @endif" href="{{ route('qrcode.index') }}">
+                            <a class="menu-link @if(request()->is('event/report')) active @endif" href="{{ route('event.report.index') }}">
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>

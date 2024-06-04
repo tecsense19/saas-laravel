@@ -189,7 +189,7 @@
                                                 </i>
                                             </span>
                                         </label>
-                                        <select name="state_id" id="state_id" aria-label="Select a State" data-control="select2" data-placeholder="Select a state..." class="form-control form-select form-select-solid form-select-lg fw-semibold mt-1 w-full"  data-hide-search="true" style="width: 100%;">
+                                        <select name="state_id" id="state_id" aria-label="Select a State" data-control="select2" data-placeholder="Select a state..." class="form-control form-select form-select-solid form-select-lg fw-semibold mt-1 w-full"  data-hide-search="false" style="width: 100%;">
                                             <option value="">Select State</option>
                                         </select>
                                         <label id="state_id-error" class="error" for="state_id"></label>
@@ -208,7 +208,7 @@
                                                 </i>
                                             </span>
                                         </label>        
-                                        <select name="city_id" id="city_id" aria-label="Select a City" data-control="select2" data-placeholder="Select a city..." class="form-control form-select form-select-solid form-select-lg fw-semibold mt-1 w-full"  data-hide-search="true" style="width: 100%;">
+                                        <select name="city_id" id="city_id" aria-label="Select a City" data-control="select2" data-placeholder="Select a city..." class="form-control form-select form-select-solid form-select-lg fw-semibold mt-1 w-full"  data-hide-search="false" style="width: 100%;">
                                             <option value="">Select City</option>
                                         </select>
                                         <label id="city_id-error" class="error" for="city_id"></label>
