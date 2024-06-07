@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\{ HomeController, FeedBackController, BankAccountController, BarcodeController };
+use App\Http\Controllers\Api\V1\{ HomeController, FeedBackController, BankAccountController, BarcodeController, ProductController };
 // use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 // use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -57,6 +57,9 @@ Route::middleware(['identifyTenant'])->group(function () {
 
             // Event User
             Route::post('scan/event/barcode', [BarcodeController::class, 'scanEventBarcode']);
+
+            // Product
+            Route::post('product/list', [ProductController::class, 'productList']);
         });
     });
 });
