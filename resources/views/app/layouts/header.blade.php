@@ -2867,7 +2867,7 @@
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                            <a href="{{ route('profile.edit') }}" class="menu-link px-5">My Profile</a>
                         </div>
                         <div class="menu-item px-5">
                             <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
@@ -2925,31 +2925,31 @@
                             </a>
                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
                                 <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5 active">
+                                    <a href="{{ route('set-language', ['locale' => 'en']) }}" class="menu-link d-flex px-5 active">
                                     <span class="symbol symbol-20px me-4">
                                     <img class="rounded-1" src="{{ asset_url('app/media/flags/united-states.svg') }}" alt="" />
                                     </span>English</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
+                                    <a href="{{ route('set-language', ['locale' => 'es']) }}" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
                                     <img class="rounded-1" src="{{ asset_url('app/media/flags/spain.svg') }}" alt="" />
                                     </span>Spanish</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
+                                    <a href="{{ route('set-language', ['locale' => 'de']) }}" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
                                     <img class="rounded-1" src="{{ asset_url('app/media/flags/germany.svg') }}" alt="" />
                                     </span>German</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
+                                    <a href="{{ route('set-language', ['locale' => 'ja']) }}" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
                                     <img class="rounded-1" src="{{ asset_url('app/media/flags/japan.svg') }}" alt="" />
                                     </span>Japanese</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
+                                    <a href="{{ route('set-language', ['locale' => 'fr']) }}" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
                                     <img class="rounded-1" src="{{ asset_url('app/media/flags/france.svg') }}" alt="" />
                                     </span>French</a>

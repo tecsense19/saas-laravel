@@ -107,7 +107,7 @@
             var routes = {
                 qrpoint_list: "{{ url('qrpoint/list') }}",
                 qrpoint_delete: "{{ url('qrpoint/delete') }}",
-                qrpoint_check: "{{ url('check/qrpoint') }}"
+                qrpoint_check: "{{ url('qrpoint/check') }}"
             };
         </script>
         <script src="{{ url('js', ['folder' => 'app/qrpoint', 'filename' => 'qrpoint']) }}"></script>

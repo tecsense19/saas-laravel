@@ -268,7 +268,7 @@
             var routes = {
                 event_list: "{{ url('events/list') }}",
                 event_delete: "{{ url('events/delete') }}",
-                event_name_check: "{{ url('check/event/name') }}",
+                event_name_check: "{{ url('events/check/name') }}",
                 state_list: "{{ url('get/states') }}",
                 city_list: "{{ url('get/cities') }}" 
             };

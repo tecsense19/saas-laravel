@@ -75,3 +75,53 @@ if (!function_exists('extractToken')) {
 //         return rtrim($baseUrl, '/') . '/' . ltrim($path, '/');
 //     }
 // }
+
+if (!function_exists('getLanguageMessage')) {
+    function getLanguageMessage($lang_key, $locale = null)
+    {
+        $languageArr = array(
+            (object) array( 'label' => 'English', 'value' => 'en' ),
+            (object) array( 'label' => 'Spanish', 'value' => 'es' ),
+            (object) array( 'label' => 'German', 'value' => 'de' ),
+            (object) array( 'label' => 'Japanese', 'value' => 'ja' ),
+            (object) array( 'label' => 'French', 'value' => 'fr' ),
+        );
+
+        $locale = $locale ?: app()->getLocale();
+        $language = \App\Models\LanguageStringMaster::where('lang_key', $lang_key)->first();
+
+        if (!$language) {
+
+            $lang_value = [];
+            foreach ($languageArr as $value) 
+            {
+                $newObj = new \StdClass();
+                $newObj->label = $value->value;
+                $newObj->value = $value->value == 'en' ? $lang_key : '';
+                $lang_value[] = $newObj;
+            }
+
+            $language = new \App\Models\LanguageStringMaster();
+            $language->lang_key = $lang_key;
+            $language->lang_value = json_encode($lang_value);
+            $language->save();
+        }
+
+        if ($language) 
+        {
+            // Decode the JSON string to an array
+            $data = json_decode($language->lang_value, true);
+
+            // Use array_map to transform the data array
+            $filteredData = array_values(array_filter($data, function ($item) use ($locale) {
+                return $item['label'] === $locale;
+            }));
+
+            $matchedValue = !empty($filteredData) ? $filteredData[0]['value'] : null;
+
+            return $matchedValue;
+        }
+
+        return null;
+    }
+}

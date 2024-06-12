@@ -24,5 +24,6 @@ class TenantDatabaseSeeder extends Seeder
         $this->call(VariantWithOptionSeeder::class);
         $this->call(HSNSACSeeder::class);
         $this->call(QRPointSeeder::class);
+        $this->call(LanguageSeeder::class);
     }
 }

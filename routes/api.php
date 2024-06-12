@@ -31,14 +31,16 @@ Route::get('/v1/get/all/company', [HomeController::class, 'getAllCompany']);
 
 Route::middleware(['identifyTenant'])->group(function () {
     Route::group(['prefix' => 'v1'], function () {
-        Route::post('/login', [HomeController::class, 'login']);
-        Route::post('/send/otp', [HomeController::class, 'sendOtp']);
-        Route::post('/verify/otp', [HomeController::class, 'verifyOtp']);
-        Route::post('/logout', [HomeController::class, 'logout']);
-        Route::post('/get/all/role', [HomeController::class, 'getAllRole']);
-        Route::post('/get/all/country', [HomeController::class, 'getAllCountry']);
-        Route::post('/country/wise/state', [HomeController::class, 'countryWiseState']);
-        Route::post('/state/wise/city', [HomeController::class, 'stateWiseCity']);
+        Route::controller(HomeController::class)->group(function () {
+            Route::post('/login', 'login');
+            Route::post('/send/otp', 'sendOtp');
+            Route::post('/verify/otp', 'verifyOtp');
+            Route::post('/logout', 'logout');
+            Route::post('/get/all/role', 'getAllRole');
+            Route::post('/get/all/country', 'getAllCountry');
+            Route::post('/country/wise/state', 'countryWiseState');
+            Route::post('/state/wise/city', 'stateWiseCity');
+        });
         
         Route::middleware(['userAuthentication'])->group(function () {
             Route::post('/get/all/user', [HomeController::class, 'getAllUser']);
@@ -47,16 +49,20 @@ Route::middleware(['identifyTenant'])->group(function () {
             Route::post('/create/feedback', [FeedBackController::class, 'createFeedback']);
 
             // Bank Account
-            Route::post('add/update/bank/account', [BankAccountController::class, 'addBankAccount']);
-            Route::post('list/bank/account', [BankAccountController::class, 'listBankAccount']);
-            Route::post('delete/bank/account', [BankAccountController::class, 'deleteBankAccount']);
+            Route::controller(BankAccountController::class)->group(function () {
+                Route::post('add/update/bank/account', 'addBankAccount');
+                Route::post('list/bank/account', 'listBankAccount');
+                Route::post('delete/bank/account', 'deleteBankAccount');
+            });
 
-            // Barcode
-            Route::post('scan/barcode', [BarcodeController::class, 'scanCode']);
-            Route::post('redeem/request', [BarcodeController::class, 'redeemRequest']);
+            Route::controller(BarcodeController::class)->group(function () {
+                // Barcode
+                Route::post('scan/barcode', 'scanCode');
+                Route::post('redeem/request', 'redeemRequest');
 
-            // Event User
-            Route::post('scan/event/barcode', [BarcodeController::class, 'scanEventBarcode']);
+                // Event User
+                Route::post('scan/event/barcode', 'scanEventBarcode');
+            });
 
             // Product
             Route::post('product/list', [ProductController::class, 'productList']);

@@ -125,7 +125,7 @@
             var routes = {
                 catalogue_list: "{{ url('catalogue/list') }}",
                 catalogue_delete: "{{ url('catalogue/delete') }}",
-                catalogue_name_check: "{{ url('check/catalogue/title') }}"
+                catalogue_name_check: "{{ url('catalogue/check/title') }}"
             };
         </script>
         <script src="{{ url('js', ['folder' => 'app/catalogue', 'filename' => 'catalogue']) }}"></script>

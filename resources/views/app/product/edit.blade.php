@@ -340,7 +340,7 @@
                         product_name: {
                             required: true,
                             remote: {
-                                url: '{{ url("check/product/name") }}',
+                                url: '{{ url("product/check/name") }}',
                                 type: 'get',
                                 async: false,
                                 dataType:'json',

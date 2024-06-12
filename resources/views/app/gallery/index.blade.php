@@ -57,7 +57,7 @@
             var routes = {
                 gallery_list: "{{ url('gallery/list') }}",
                 gallery_delete: "{{ url('gallery/delete') }}",
-                gallery_name_check: "{{ url('check/gallery/title') }}"
+                gallery_name_check: "{{ url('gallery/check/title') }}"
             };
         </script>
         <script src="{{ url('js', ['folder' => 'app/gallery', 'filename' => 'gallery']) }}"></script>

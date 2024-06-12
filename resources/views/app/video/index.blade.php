@@ -57,7 +57,7 @@
             var routes = {
                 video_list: "{{ url('video/list') }}",
                 video_delete: "{{ url('video/delete') }}",
-                video_name_check: "{{ url('check/video/title') }}"
+                video_name_check: "{{ url('video/check/title') }}"
             };
         </script>
         <script src="{{ url('js', ['folder' => 'app/video', 'filename' => 'video']) }}"></script>

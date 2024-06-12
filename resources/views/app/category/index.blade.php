@@ -95,7 +95,7 @@
             var routes = {
                 category_list: "{{ url('categories/list') }}",
                 category_delete: "{{ url('categories/delete') }}",
-                category_name_check: "{{ url('check/category/name') }}"
+                category_name_check: "{{ url('categories/check/name') }}"
             };
         </script>
         <script src="{{ url('js', ['folder' => 'app/category', 'filename' => 'category']) }}"></script>

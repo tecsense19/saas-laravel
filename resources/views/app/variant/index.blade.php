@@ -111,8 +111,8 @@
             var routes = {
                 variant_list: "{{ url('variant/list') }}",
                 variant_delete: "{{ url('variant/delete') }}",
-                variant_name_check: "{{ url('check/variant/name') }}",
-                variant_option_name_check: "{{ url('check/variant/option/name') }}"
+                variant_name_check: "{{ url('variant/check/name') }}",
+                variant_option_name_check: "{{ url('variant/check/option/name') }}"
             };
         </script>
         <script src="{{ url('js', ['folder' => 'app/variant', 'filename' => 'variant']) }}"></script>

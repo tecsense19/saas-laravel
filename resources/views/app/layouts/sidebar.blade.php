@@ -204,7 +204,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Dashboard</span>
+                    <span class="menu-title">{{ getLanguageMessage('Dashboard') }}</span>
                     </a>
                 </div>
                 <div class="menu-item pt-5">
@@ -222,7 +222,7 @@
                     <span class="path3"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Users</span>
+                    <span class="menu-title">{{ getLanguageMessage('Users') }}</span>
                     <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
@@ -239,7 +239,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">User List</span>
+                            <span class="menu-title">{{ getLanguageMessage('User List') }}</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -247,7 +247,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Add User</span>
+                            <span class="menu-title">{{ getLanguageMessage('Add User') }}</span>
                             </a>
                         </div>
                     </div>
@@ -482,6 +482,21 @@
                             </a>
                         </div>
                     </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link @if(request()->is('language')) active @endif" href="{{ url('language') }}">
+                    <span class="menu-icon">
+                    <i class="ki-duotone ki-calendar-8 fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                    <span class="path6"></span>
+                    </i>
+                    </span>
+                    <span class="menu-title">Language Master</span>
+                    </a>
                 </div>
                 @endrole
                 <!-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

@@ -117,7 +117,7 @@
                 qrcode_list: "{{ url('qrcode/list') }}",
                 qrcode_delete: "{{ url('qrcode/delete') }}",
                 qrcode_check: "{{ url('check/qrcode') }}",
-                check_last_id: "{{ url('check/last/qrcode/id') }}",
+                check_last_id: "{{ url('qrcode/check/last/id') }}",
                 qrcode_download: "{{ url('qrcode/download') }}",
             };
         </script>

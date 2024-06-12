@@ -102,7 +102,7 @@
             var routes = {
                 hsnsac_list: "{{ url('hsnsac/list') }}",
                 hsnsac_delete: "{{ url('hsnsac/delete') }}",
-                hsnsac_name_check: "{{ url('check/hsnsac/name') }}"
+                hsnsac_name_check: "{{ url('hsnsac/check/name') }}"
             };
         </script>
         <script src="{{ url('js', ['folder' => 'app/hsnsac', 'filename' => 'hsnsac']) }}"></script>
