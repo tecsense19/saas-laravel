@@ -495,7 +495,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Language Master</span>
+                    <span class="menu-title">Language String Master</span>
                     </a>
                 </div>
                 @endrole

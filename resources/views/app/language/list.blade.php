@@ -37,25 +37,19 @@
                             @php
                                 $langVal = json_decode($singleRec->lang_value);
                             @endphp
-                            @foreach($langVal as $val)
-                                @php
-                                    $filteredArray = array_filter($selectedLang, function ($object) use ($val) {
-                                        return $object->value === $val->label;
-                                    });
-                                    if (!empty($filteredArray)) {
-                                @endphp
+                            @foreach($selectedLang as $sKey => $val)                                
                                 <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                    <textarea class="form-control" name="lang[{{ $singleRec->lang_key }}][{{ $val->label }}]">{{ $val->value }}</textarea>
+                                    @php
+                                        $filteredArray = array_filter((array)$langVal, function ($object) use ($val) {
+                                            return $object->label === $val->value;
+                                        });
+                                        if (!empty($filteredArray)) {
+                                    @endphp
+                                    <textarea class="form-control" name="lang[{{ $singleRec->lang_key }}][{{ $val->value }}]">{{ reset($filteredArray)->value }}</textarea>
+                                    @php } else { @endphp 
+                                        <textarea class="form-control" name="lang[{{ $singleRec->lang_key }}][{{ $val->value }}]"></textarea>
+                                    @php } @endphp
                                 </td>  
-                                @php 
-                                    } else {
-                                @endphp
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                        <textarea class="form-control" name="lang[{{ $singleRec->lang_key }}][{{ $val->label }}]">{{ $val->value }}</textarea>
-                                    </td>
-                                @php 
-                                    }
-                                @endphp
                             @endforeach()                        
                         @endif
                         <!-- <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">-</td> -->

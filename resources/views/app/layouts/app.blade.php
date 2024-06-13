@@ -98,7 +98,7 @@ License: For each use you must have a valid license purchased only from above li
 				transition: color .2s ease !important;
 			}
 			.select2-container {
-				z-index: 9999
+				z-index: 99
 			}
 
 			.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {

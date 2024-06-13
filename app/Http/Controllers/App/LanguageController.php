@@ -61,8 +61,8 @@ class LanguageController extends Controller
             foreach ($value as $key => $val) 
             {
                 $newObj = new \StdClass();
-                $newObj->label = $key;
-                $newObj->value = $val;
+                $newObj->label = trim($key);
+                $newObj->value = trim($val);
                 $lang_value[] = $newObj;
             }
 

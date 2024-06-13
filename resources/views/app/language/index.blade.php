@@ -37,7 +37,7 @@
                                         </i>
                                     </span>
                                 </label>
-                                <select name="app_master_lang" id="app_master_lang" aria-label="Select a App Language" data-control="select2" data-placeholder="Select App Language..." class="form-control form-select form-select-solid form-select-lg fw-semibold mt-1 w-full select2"  data-hide-search="true" style="width: 100%;" data-allow-clear="true" multiple="multiple">
+                                <select name="app_master_lang" id="app_master_lang" aria-label="Select a App Language" data-control="select2" data-placeholder="Select App Language..." class="form-control form-control-solid form-select form-select-solid form-select-lg fw-semibold mt-1 w-full select2"  data-hide-search="true" style="width: 100%;" data-allow-clear="true" multiple="multiple">
                                     <option value="">Select App Language</option>
                                     @php
                                         $selectedLang = json_decode($getSelectedLang->lang_value);
@@ -50,13 +50,9 @@
                                             if (!empty($filteredArray)) {
                                         @endphp
                                             <option value="{{ $lang->code }}" selected>{{ $lang->name }}</option>
-                                        @php
-                                            } else {
-                                        @endphp
+                                        @php } else { @endphp
                                             <option value="{{ $lang->code }}">{{ $lang->name }}</option>
-                                        @php
-                                            }
-                                        @endphp
+                                        @php } @endphp
                                     @endforeach
                                 </select>
                             </div>

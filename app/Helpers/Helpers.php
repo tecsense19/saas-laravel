@@ -113,7 +113,7 @@ if (!function_exists('getLanguageMessage')) {
             $data = json_decode($language->lang_value, true);
 
             // Use array_map to transform the data array
-            $filteredData = array_values(array_filter($data, function ($item) use ($locale) {
+            $filteredData = array_values(array_filter((array)$data, function ($item) use ($locale) {
                 return $item['label'] === $locale;
             }));
 
