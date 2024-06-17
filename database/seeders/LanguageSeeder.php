@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Language;
+use App\Models\LanguageStringMaster;
 use Illuminate\Support\Facades\DB;
 
 class LanguageSeeder extends Seeder
