@@ -19,5 +19,16 @@ class LanguageSeeder extends Seeder
 
         // Execute the SQL directly
         DB::unprepared($sqlFile);
+
+        $setLang = [];
+        $newObj = new \StdClass();
+        $newObj->label = 'English';
+        $newObj->value = 'en';
+        $setLang[] = $newObj;
+
+        LanguageStringMaster::updateOrCreate(
+            ['lang_key' => 'app_master_lang'], // Search criteria
+            ['lang_value' => json_encode($setLang)]   // Data to update or create
+        );
     }
 }
