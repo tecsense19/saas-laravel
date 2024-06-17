@@ -261,7 +261,7 @@
                     <span class="path3"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Product Management</span>
+                    <span class="menu-title">{{ getLanguageMessage('Product Management') }}</span>
                     <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
@@ -278,7 +278,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Categories</span>
+                            <span class="menu-title">{{ getLanguageMessage('Categories') }}</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -286,7 +286,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Variants</span>
+                            <span class="menu-title">{{ getLanguageMessage('Variants') }}</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -294,7 +294,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">HSN/SAC Management</span>
+                            <span class="menu-title">{{ getLanguageMessage('HSN/SAC Management') }}</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -302,7 +302,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Products</span>
+                            <span class="menu-title">{{ getLanguageMessage('Products') }}</span>
                             </a>
                         </div>
                     </div>
@@ -316,7 +316,7 @@
                     <span class="path3"></span>
                     </i>
                     </span>
-                    <span class="menu-title">QR Management</span>
+                    <span class="menu-title">{{ getLanguageMessage('QR Management') }}</span>
                     <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
@@ -333,7 +333,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">QR Point</span>
+                            <span class="menu-title">{{ getLanguageMessage('QR Point') }}</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -341,7 +341,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">QR Code Generation</span>
+                            <span class="menu-title">{{ getLanguageMessage('QR Code Generation') }}</span>
                             </a>
                         </div>
                     </div>
@@ -358,7 +358,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Event Management</span>
+                    <span class="menu-title">{{ getLanguageMessage('Event Management') }}</span>
                     </a>
                 </div>
                 <div class="menu-item">
@@ -373,7 +373,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Video Management</span>
+                    <span class="menu-title">{{ getLanguageMessage('Video Management') }}</span>
                     </a>
                 </div>
                 <div class="menu-item">
@@ -388,7 +388,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Gallery Management</span>
+                    <span class="menu-title">{{ getLanguageMessage('Gallery Management') }}</span>
                     </a>
                 </div>
                 <div class="menu-item">
@@ -403,7 +403,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Feedback Management</span>
+                    <span class="menu-title">{{ getLanguageMessage('Feedback Management') }}</span>
                     </a>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('redeem') || request()->is('redeem/view/*') || request()->is('redeem/request')) here show @endif menu-accordion">
@@ -415,7 +415,7 @@
                     <span class="path3"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Account Management</span>
+                    <span class="menu-title">{{ getLanguageMessage('Account Management') }}</span>
                     <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
@@ -424,7 +424,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Redeem Data</span>
+                            <span class="menu-title">{{ getLanguageMessage('Redeem Data') }}</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -432,7 +432,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Import/Export Redeem Data</span>
+                            <span class="menu-title">{{ getLanguageMessage('Import/Export Redeem Data') }}</span>
                             </a>
                         </div>
                     </div>
@@ -449,7 +449,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Our Catalogue</span>
+                    <span class="menu-title">{{ getLanguageMessage('Our Catalogue') }}</span>
                     </a>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('user/report') || request()->is('event/report')) here show @endif menu-accordion">
@@ -461,7 +461,7 @@
                     <span class="path3"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Reports</span>
+                    <span class="menu-title">{{ getLanguageMessage('Reports') }}</span>
                     <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
@@ -470,7 +470,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">User Reports</span>
+                            <span class="menu-title">{{ getLanguageMessage('User Reports') }}</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -478,7 +478,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Event Reports</span>
+                            <span class="menu-title">{{ getLanguageMessage('Event Reports') }}</span>
                             </a>
                         </div>
                     </div>
@@ -495,7 +495,7 @@
                     <span class="path6"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Language String Master</span>
+                    <span class="menu-title">{{ getLanguageMessage('Language String Master') }}</span>
                     </a>
                 </div>
                 @endrole
