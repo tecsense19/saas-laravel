@@ -40,7 +40,7 @@
                                 <select name="app_master_lang" id="app_master_lang" aria-label="Select a App Language" data-control="select2" data-placeholder="Select App Language..." class="form-control form-control-solid form-select form-select-solid form-select-lg fw-semibold mt-1 w-full select2"  data-hide-search="true" style="width: 100%;" data-allow-clear="true" multiple="multiple">
                                     <option value="">Select App Language</option>
                                     @php
-                                        $selectedLang = json_decode($getSelectedLang->lang_value);
+                                        $selectedLang = $getSelectedLang->lang_value ? json_decode($getSelectedLang->lang_value) : [];
                                     @endphp
                                     @foreach($getAllLang as $lang)
                                         @php
@@ -60,7 +60,7 @@
                         <form method="POST" class="form" action="{{ url('language/search') }}" id="eventForm" enctype='multipart/form-data'>
                         @csrf
                             <div class="row">
-                                @if(isset($getSelectedLang) > 0)
+                                @if(isset($getSelectedLang) && isset($getSelectedLang->lang_value) && count(json_decode($getSelectedLang->lang_value)) > 0)
                                     @foreach(json_decode($getSelectedLang->lang_value) as $lang)
                                         <div class="col-md-4 col-12 pt-0">
                                             <div class="mb-5 fv-row">

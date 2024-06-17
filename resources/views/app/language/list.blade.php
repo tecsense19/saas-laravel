@@ -8,7 +8,7 @@
                     </div>
                 </th>
                 <th class="min-w-125px">Native</th>
-                @if(isset($getSelectedLang) > 0)
+                @if(isset($getSelectedLang) && isset($getSelectedLang->lang_value) && count(json_decode($getSelectedLang->lang_value)) > 0)
                     @foreach(json_decode($getSelectedLang->lang_value) as $lang)
                         <th class="min-w-125px">{{ $lang->label }}</th>
                     @endforeach
@@ -19,7 +19,7 @@
         <tbody class="text-gray-600 fw-semibold">
             @csrf
             @php
-                $selectedLang = json_decode($getSelectedLang->lang_value);
+                $selectedLang = isset($getSelectedLang->lang_value) ? json_decode($getSelectedLang->lang_value) : [];
             @endphp
             @if(isset($languageData) && count($languageData) > 0)
                 @foreach($languageData as $keys => $singleRec)
@@ -35,7 +35,7 @@
                         </td>
                         @if(isset($singleRec->lang_key) && $singleRec->lang_key != '')
                             @php
-                                $langVal = json_decode($singleRec->lang_value);
+                                $langVal = $singleRec->lang_value ? json_decode($singleRec->lang_value) : [];
                             @endphp
                             @foreach($selectedLang as $sKey => $val)                                
                                 <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
