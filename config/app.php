@@ -19,6 +19,10 @@ return [
 
     'asset_base_url' => env('APP_URL', 'http://localhost:8000'),
 
+    'asset_base_live_url' => env('APP_LIVE_URL', 'https://tecsenseinnovations.com'),
+
+    'tenancy_central_domains' => env('APP_TENANCY_CENTRAL_DOMAIN', 'https://tecsenseinnovations.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

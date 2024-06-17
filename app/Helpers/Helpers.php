@@ -17,13 +17,17 @@ if (!function_exists('asset_url')) {
 
         // Construct the asset URL based on the subdomain and port
         $port = request()->getPort();
-        $baseUrl = config('app.asset_base_url');
+        $baseUrl = $port != '80' ? config('app.asset_base_url') : config('app.asset_base_live_url');
 
         // Adjust the base URL format based on whether a port is present
-        $baseUrlFormat = $port ? 'http://%s:%d/%s' : 'http://%s/%s';
-
+        $baseUrlFormat = $port != '80' ? 'http://%s:%d/%s' : 'http://%s/%s';
+        
         // return sprintf($baseUrlFormat, $subdomain, $port, ltrim('saasdemo/public/'.$path, '/'));
-        return sprintf($baseUrlFormat, $subdomain, $port, ltrim($path, '/'));
+        if($port != '80') {
+            return sprintf($baseUrlFormat, $subdomain, $port, ltrim($path, '/'));
+        } else {
+            return sprintf($baseUrlFormat, $subdomain, ltrim($path, '/'));
+        }
     }
 }
 
