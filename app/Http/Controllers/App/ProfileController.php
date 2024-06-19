@@ -15,7 +15,10 @@ class ProfileController extends Controller
 {
     public function index(Request $request): View
     {
-        $totalUser = User::count();
+        $totalUser = User::with('roles')
+                        ->whereDoesntHave('roles', function ($query) {
+                            $query->where('name', 'Admin');
+                        })->count();
         $totalProduct = Product::count();
         $totalEvent = Event::count();
         $totalVideo = VideoGallery::where('video_gallery_type', 'video')->count();

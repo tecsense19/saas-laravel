@@ -213,100 +213,96 @@
                     </div>
                 </div>
                 @role('Admin')
-                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('users') || request()->is('users/create')) here show @endif menu-accordion">
-                    <span class="menu-link">
-                    <span class="menu-icon">
-                    <i class="ki-duotone ki-map fs-2">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                    <span class="path3"></span>
-                    </i>
-                    </span>
-                    <span class="menu-title">{{ getLanguageMessage('Users') }}</span>
-                    <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion">
-                        <!-- <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/subscriptions/getting-started.html">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
+                    @can('Menu User Management', App\Models\User::class)
+                        <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('users') || request()->is('users/create')) here show @endif menu-accordion">
+                            <span class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-map fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">{{ getLanguageMessage('User Management') }}</span>
+                                <span class="menu-arrow"></span>
                             </span>
-                            <span class="menu-title">Getting Started</span>
-                            </a>
-                        </div> -->
-                        <div class="menu-item">
-                            <a class="menu-link @if(request()->is('users')) active @endif" href="{{ route('users.index') }}">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">{{ getLanguageMessage('User List') }}</span>
-                            </a>
+                            <div class="menu-sub menu-sub-accordion">
+                                <div class="menu-item">
+                                    <a class="menu-link @if(request()->is('users')) active @endif" href="{{ route('users.index') }}">
+                                    <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ getLanguageMessage('User List') }}</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link @if(request()->is('users/create')) active @endif" href="{{ route('users.create') }}">
+                                    <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ getLanguageMessage('Add User') }}</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link @if(request()->is('users/create')) active @endif" href="{{ route('users.create') }}">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
+                    @endcan
+                    @can('Menu Product Management', App\Models\User::class)
+                        <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('categories') || request()->is('variant') || request()->is('hsnsac') || request()->is('product') || request()->is('product/create') || request()->is('product/edit/*')) here show @endif menu-accordion">
+                            <span class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-map fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">{{ getLanguageMessage('Product Management') }}</span>
+                                <span class="menu-arrow"></span>
                             </span>
-                            <span class="menu-title">{{ getLanguageMessage('Add User') }}</span>
-                            </a>
+                            <div class="menu-sub menu-sub-accordion">
+                                <!-- <div class="menu-item">
+                                    <a class="menu-link" href="../../demo1/dist/apps/subscriptions/getting-started.html">
+                                    <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Getting Started</span>
+                                    </a>
+                                </div> -->
+                                <div class="menu-item">
+                                    <a class="menu-link @if(request()->is('categories')) active @endif" href="{{ route('categories.index') }}">
+                                    <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ getLanguageMessage('Categories') }}</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link @if(request()->is('variant')) active @endif" href="{{ route('variant.index') }}">
+                                    <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ getLanguageMessage('Variants') }}</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link @if(request()->is('hsnsac')) active @endif" href="{{ route('hsnsac.index') }}">
+                                    <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ getLanguageMessage('HSN/SAC Management') }}</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link @if(request()->is('product') || request()->is('product/create') || request()->is('product/edit/*')) active @endif" href="{{ route('product.index') }}">
+                                    <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ getLanguageMessage('Products') }}</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('categories') || request()->is('variant') || request()->is('hsnsac') || request()->is('product') || request()->is('product/create') || request()->is('product/edit/*')) here show @endif menu-accordion">
-                    <span class="menu-link">
-                    <span class="menu-icon">
-                    <i class="ki-duotone ki-map fs-2">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                    <span class="path3"></span>
-                    </i>
-                    </span>
-                    <span class="menu-title">{{ getLanguageMessage('Product Management') }}</span>
-                    <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion">
-                        <!-- <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/subscriptions/getting-started.html">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Getting Started</span>
-                            </a>
-                        </div> -->
-                        <div class="menu-item">
-                            <a class="menu-link @if(request()->is('categories')) active @endif" href="{{ route('categories.index') }}">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">{{ getLanguageMessage('Categories') }}</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link @if(request()->is('variant')) active @endif" href="{{ route('variant.index') }}">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">{{ getLanguageMessage('Variants') }}</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link @if(request()->is('hsnsac')) active @endif" href="{{ route('hsnsac.index') }}">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">{{ getLanguageMessage('HSN/SAC Management') }}</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link @if(request()->is('product') || request()->is('product/create') || request()->is('product/edit/*')) active @endif" href="{{ route('product.index') }}">
-                            <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">{{ getLanguageMessage('Products') }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    @endcan
                 <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('qrpoint') || request()->is('qrcode')) here show @endif menu-accordion">
                     <span class="menu-link">
                     <span class="menu-icon">
@@ -497,6 +493,37 @@
                     </span>
                     <span class="menu-title">{{ getLanguageMessage('Language String Master') }}</span>
                     </a>
+                </div>
+                <div data-kt-menu-trigger="click" class="menu-item @if(request()->is('roles') || request()->is('permissions')) here show @endif menu-accordion">
+                    <span class="menu-link">
+                    <span class="menu-icon">
+                    <i class="ki-duotone ki-map fs-2">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    </i>
+                    </span>
+                    <span class="menu-title">{{ getLanguageMessage('Role and Permissions') }}</span>
+                    <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion">
+                        <div class="menu-item">
+                            <a class="menu-link @if(request()->is('roles') || request()->is('redeem/view/*')) active @endif" href="{{ route('roles.index') }}">
+                            <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">{{ getLanguageMessage('Roles List') }}</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link @if(request()->is('permissions')) active @endif" href="{{ route('permissions.index') }}">
+                            <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">{{ getLanguageMessage('Permissions') }}</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 @endrole
                 <!-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

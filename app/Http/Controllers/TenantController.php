@@ -52,8 +52,8 @@ class TenantController extends Controller
         ]);
 
         // Create DNS record on CloudFlare
-        $cloudFlareService = new CloudFlareService();
-        $cloudFlareService->createDNSRecord($tenant->subdomain);
+        // $cloudFlareService = new CloudFlareService();
+        // $cloudFlareService->createDNSRecord($tenant->subdomain);
 
         return redirect()->route('tenants.index')->with('success', 'Tenant created successfully.');
     }

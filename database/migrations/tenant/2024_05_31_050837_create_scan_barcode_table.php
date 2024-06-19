@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('generated_qr_id')->index();
             $table->unsignedBigInteger('qr_point_id')->index();
             $table->unsignedBigInteger('product_id')->index();
-            $table->decimal('qr_amount', 10, 2)->nullable();
+            $table->decimal('total_point', 10, 2)->nullable();
             $table->enum('scan_type', ['Credit', 'Debit'])->default('Credit');
             $table->datetime('scan_date')->nullable();
             $table->datetime('paid_date')->nullable();

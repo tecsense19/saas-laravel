@@ -23,9 +23,12 @@ use App\Http\Controllers\App\{
     OurCatalogueController,
     UserReportController,
     EventReportController,
-    LanguageController
+    LanguageController,
+    RoleController,
+    PermissionController
 };
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 /*
 |--------------------------------------------------------------------------
 | Tenant Routes
@@ -75,7 +78,7 @@ Route::middleware([
     
         Route::group(['middleware' => ['role:Admin']], function () { 
             // Users
-            Route::resource('users', UserController::class);
+            Route::resource('users', UserController::class)->middleware('permission:User Create');
             Route::post('users/list', [UserController::class, 'list'])->name('users.list');
             Route::post('users/delete', [UserController::class, 'delete'])->name('users.delete');
 
@@ -154,7 +157,7 @@ Route::middleware([
                 Route::get('/check/title', 'checkTitle')->name('title.check');
                 Route::post('/delete', 'delete')->name('delete');
             });
-
+            
             // Gallery
             Route::controller(VideoGalleryController::class)->prefix('gallery')->name('gallery.')->group(function () {
                 Route::get('/', 'galleryIndex')->name('index');
@@ -169,7 +172,7 @@ Route::middleware([
                 Route::post('/list', 'list')->name('list');
                 Route::post('/delete', 'delete')->name('delete');
             });
-
+            
             // Account Management redeem
             Route::controller(AccountManagement::class)->prefix('redeem')->name('redeem.')->group(function () {
                 Route::get('/', 'index')->name('index');
@@ -182,7 +185,7 @@ Route::middleware([
             
             Route::get('export/redemption', [AccountManagement::class, 'exportRedemption'])->name('export.redemption');
             Route::post('import/redemption', [AccountManagement::class, 'importRedemption'])->name('import.redemption');
-
+            
             // Our Catalogue
             Route::controller(OurCatalogueController::class)->prefix('catalogue')->name('catalogue.')->group(function () {
                 Route::get('/', 'index')->name('index');
@@ -213,6 +216,25 @@ Route::middleware([
                 Route::post('/store', 'store')->name('store');
                 Route::post('/master/store', 'appMasterLangStore')->name('master.store');
                 Route::post('/search', 'search')->name('search');
+            });
+            
+            // Roles
+            Route::controller(RoleController::class)->prefix('roles')->name('roles.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/check/name', 'roleCheckName')->name('name.check');
+                Route::post('/delete', 'delete')->name('delete');
+            });
+            
+            // Permissions
+            Route::controller(PermissionController::class)->prefix('permissions')->name('permissions.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/list', 'list')->name('list');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/check/title', 'checkPermissionTitle')->name('title.check');
+                Route::post('/search', 'search')->name('search');
+                Route::post('/delete', 'delete')->name('delete');
+                Route::post('/store/bulk', 'createBulkPermissions')->name('delete');
             });
         });
 
