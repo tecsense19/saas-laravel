@@ -23,7 +23,7 @@ class PermissionSeeder extends Seeder
         // Execute the SQL directly
         DB::unprepared($sqlFile);
 
-        $role = Role::where('name', 'Admin');
+        $role = Role::where('name', 'Admin')->first();
         if($role)
         {
             $permissions = Permission::pluck('id')->toArray();
