@@ -81,6 +81,12 @@ $( document ).ready(function()
         $('#role_name').val($(this).data('name'));
         $('#role_id').val($(this).data('id'));
 
+        if($(this).data('name') == 'Admin') {
+            $('.role-submit').hide();
+        } else {
+            $('.role-submit').show();
+        }
+
         var permissions = $(this).data('permission');
 
         var permissionNames = $.map(permissions, function(permission) {

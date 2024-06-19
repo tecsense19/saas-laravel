@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body pt-1">
-                                        <div class="fw-bold text-gray-600 mb-5">Total users with this role: 5</div>
+                                        <div class="fw-bold text-gray-600 mb-5">Total users with this role: {{ $role->users()->count() }}</div>
                                         <div class="d-flex flex-column text-gray-600">
                                             
                                         </div>
@@ -140,10 +140,10 @@
                                     </div>
                                     <div class="text-center pt-15">
                                         <button id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5 close_modal" type="reset" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
-                                        <span class="indicator-label">Submit</span>
-                                        <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        <button type="submit" class="btn btn-primary role-submit" data-kt-roles-modal-action="submit">
+                                            <span class="indicator-label">Submit</span>
+                                            <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
                                     </div>
                                 </form>
