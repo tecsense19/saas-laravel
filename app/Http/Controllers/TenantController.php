@@ -6,11 +6,22 @@ use App\Models\Tenant;
 use App\Models\User;
 use App\Models\Domain;
 use App\Services\CloudFlareService;
+use App\Services\CPanelApiService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class TenantController extends Controller
 {
+    protected $cpanel;
+
+    public function __construct(CPanelApiService $cpanel)
+    {
+        $this->cpanel = $cpanel;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -88,25 +99,92 @@ class TenantController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:tenants,name'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'company_name' => ['required', 'string', 'max:255', 'unique:users,company_name'],
             'domain_name' => ['required', 'string', 'lowercase', 'max:255', 'unique:domains,domain'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // $tenant = Tenant::create($validatedData);
+        $tenant = Tenant::create($validatedData);
 
-        // $tenant->domains()->create([
-        //     'domain' => $validatedData['domain_name'].'.'.config('app.domain')
-        // ]);
+        $subDomainName = $validatedData['domain_name'].'.'.config('app.domain');
 
         // Create DNS record on CloudFlare
         $cloudFlareService = new CloudFlareService();
-        // $cloudFlareService->createDNSRecord($tenant->subdomain);
-        $cloudFlareService->createDNSRecord($validatedData['domain_name'].'.'.config('app.domain'));
+        $cloudFlareService->createDNSRecord($subDomainName);
 
-        return redirect()->route('tenants.index')->with('success', 'Tenant created successfully.');
+        $tenant->domains()->create([
+            'domain' => $subDomainName
+        ]);
+
+        $dbUserName = $tenant ? explode('-', $tenant->id)[0] : '';
+        
+        if($dbUserName)
+        {
+            // Create the database
+            $dbResponse = $this->cpanel->createDatabase($tenant->id);
+            if (!$dbResponse['status']) {
+                return redirect()->route('tenants.index')->with('error', $dbResponse['errors'][0]);
+            }
+            // Create the database user
+            $userResponse = $this->cpanel->createDatabaseUser($dbUserName, $tenant->id);
+            if (!$userResponse['status']) {
+                return redirect()->route('tenants.index')->with('error', $userResponse['errors'][0]);
+            }
+            // Assign privileges to the user
+            $privResponse = $this->cpanel->setUserPrivileges($tenant->id, $dbUserName);
+            if (!$privResponse['status']) {
+                return redirect()->route('tenants.index')->with('error', $privResponse['errors'][0]);
+            }
+
+            $dbName = '';
+            $dbUserName = '';
+            $dbPassword = '';
+
+            if(request()->getPort() != 80) {
+                $dbName = 'tenant' . $tenant->id;
+                $dbUserName = env('DB_USERNAME', 'root');
+                $dbPassword = env('DB_PASSWORD', '');
+            } else {
+                $dbName = config('app.cpanel_user_name') . '_' . $tenant->id;
+                $dbUserName = config('app.cpanel_user_name') . '_' . explode('-', $tenant->id)[0];
+                $dbPassword = $tenant->id;
+            }
+
+            // Set the database connection dynamically
+            config(['database.connections.tenant.database' => $dbName]);
+            config(['database.connections.tenant.username' => $dbUserName]);
+            config(['database.connections.tenant.password' => $tenant->id]);
+            DB::purge('tenant');
+            DB::reconnect('tenant');
+            
+            // Set the tenant ID globally
+            // app()->instance('tenant_id', $tenant->tenant_id);
+
+            DB::setDefaultConnection('tenant');
+
+            // Step 2: Run migrations for the tenant's database
+            Artisan::call('migrate', [
+                '--database' => 'tenant', // Replace with your tenant's database connection name
+                '--path' => 'database/migrations/tenant', // Adjust path if needed
+            ]);
+
+            // Run seeders for the tenant's database
+            Artisan::call('db:seed', [
+                '--class' => 'TenantDatabaseSeeder', // Replace with your seeder class
+                '--database' => 'tenant', // Specify the connection name if using multiple database connections
+            ]);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+
+            $user->assignRole('Admin');
+        }
+
+        return redirect()->route('tenants.index')->with('success', 'Company created successfully.');
     }
 
     /**

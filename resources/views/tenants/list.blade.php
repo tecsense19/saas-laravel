@@ -51,7 +51,7 @@
             @endforeach
         @else
             <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 text-center">
-                <td colspan="10">Tenants list not found.</td>
+                <td colspan="10">Comapnies list not found.</td>
             </tr>
         @endif
     </tbody>

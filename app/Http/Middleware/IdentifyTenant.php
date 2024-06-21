@@ -60,8 +60,25 @@ class IdentifyTenant
                 return response()->json($response, '404');
             }
 
+            $dbName = '';
+            $dbUserName = '';
+            $dbPassword = '';
+
+            if(request()->getPort() != 80) {
+                $dbName = 'tenant' . $tenant->id;
+                $dbUserName = env('DB_USERNAME', 'root');
+                $dbPassword = env('DB_PASSWORD', '');
+            } else {
+                $dbName = config('app.cpanel_user_name') . '_' . $tenant->id;
+                $dbUserName = config('app.cpanel_user_name') . '_' . explode('-', $tenant->id)[0];
+                $dbPassword = $tenant->id;
+            }
+
+
             // Set the database connection dynamically
-            config(['database.connections.tenant.database' => 'tenant'.$tenant->id]);
+            config(['database.connections.tenant.database' => $dbName]);
+            config(['database.connections.tenant.username' => $dbUserName]);
+            config(['database.connections.tenant.password' => $tenant->id]);
             DB::purge('tenant');
             DB::reconnect('tenant');
             

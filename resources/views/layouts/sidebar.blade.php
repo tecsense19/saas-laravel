@@ -221,7 +221,7 @@
                     <span class="path3"></span>
                     </i>
                     </span>
-                    <span class="menu-title">Tenants</span>
+                    <span class="menu-title">Companies</span>
                     <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
@@ -238,7 +238,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Tenant List</span>
+                            <span class="menu-title">Company List</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -246,7 +246,7 @@
                             <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Add Tenant</span>
+                            <span class="menu-title">Add Company</span>
                             </a>
                         </div>
                     </div>

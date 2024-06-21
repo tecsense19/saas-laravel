@@ -67,6 +67,12 @@ return [
 
     'domain' => env('APP_DOMAIN', 'localhost'),
 
+    // Cpanel Settings
+
+    'cpanel_url' => env('CPANEL_URL'),
+    'cpanel_api_token' => env('CPANEL_API_TOKEN'),
+    'cpanel_user_name' => env('CPANEL_USER_NAME'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
