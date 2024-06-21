@@ -38,6 +38,13 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="{{ asset_url('app/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset_url('app/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+
+		<style>
+            .error {
+                font-weight: bold;
+                color: red;
+            }
+		</style>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -111,6 +118,9 @@ License: For each use you must have a valid license purchased only from above li
                 });
             }, 3000);
         </script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 		@yield('script')
     </body>
 </html>

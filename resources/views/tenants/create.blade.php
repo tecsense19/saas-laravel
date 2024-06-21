@@ -34,7 +34,7 @@
                                 </div>
                             </div> -->
                             <div class="card-body pt-5">
-                                <form method="POST" class="form" action="{{ route('tenants.store') }}">
+                                <form method="POST" class="form" action="{{ route('tenants.store') }}" id="companyForm" enctype='multipart/form-data'>
                                     @csrf
                                     <div class="mb-7">
                                         <label class="fs-6 fw-semibold mb-3">
@@ -78,8 +78,8 @@
                                         <div class="col">
                                             <div class="fv-row mb-7">
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span class="required">Name</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Enter the full name.">
+                                                    <span class="required">Company Name</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Enter the contact's company name (optional).">
                                                         <i class="ki-duotone ki-information fs-7">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -87,8 +87,7 @@
                                                         </i>
                                                     </span>
                                                 </label>
-                                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" placeholder="Name" required autocomplete="username" />
-                                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" placeholder="Company Name" />
                                             </div>
                                         </div>
                                         <div class="col">
@@ -107,22 +106,7 @@
                                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="fv-row mb-7">
-                                                <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span>Company Name</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Enter the contact's company name (optional).">
-                                                        <i class="ki-duotone ki-information fs-7">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                        </i>
-                                                    </span>
-                                                </label>
-                                                <x-text-input id="company_name" class="block mt-1 w-full" type="text" name="company_name" :value="old('name')" placeholder="Company Name" />
-                                            </div>
-                                        </div>
-                                        <div class="col">
+                                        <div class="col col-lg-4">
                                             <div class="fv-row mb-7">
                                                 <label class="fs-6 fw-semibold form-label mt-3">
                                                     <span class="required">Domain Name</span>
@@ -134,11 +118,17 @@
                                                         </i>
                                                     </span>
                                                 </label>
-                                                <x-text-input id="domain_name" class="block mt-1 w-full" type="text" name="domain_name" :value="old('domain_name')" placeholder="Domain Name" required />
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-lg form-control-solid block mt-1 w-full error" id="domain_name" name="domain_name" :value="old('domain_name')" placeholder="Domain Name" required aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text border-0 mt-1" id="basic-addon2" style="padding: .950rem 1.5rem;">.{{ request()->getHost(); }}</span>
+                                                    </div>
+                                                </div>
+                                                <label id="domain_name-error" class="error" for="domain_name"></label>
                                                 <x-input-error :messages="$errors->get('domain_name')" class="mt-2" />
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col col-lg-4">
                                             <div class="fv-row mb-7">
                                                 <label class="fs-6 fw-semibold form-label mt-3">
                                                     <span class="required">Password</span>
@@ -150,16 +140,12 @@
                                                         </i>
                                                     </span>
                                                 </label>        
-                                                <x-text-input id="password" class="block mt-1 w-full"
-                                                                type="password"
-                                                                name="password"
-                                                                placeholder="Password"
-                                                                required autocomplete="new-password" />
+                                                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" placeholder="Password" required autocomplete="new-password" />
         
                                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col col-lg-4">
                                             <div class="fv-row mb-7">
                                                 <label class="fs-6 fw-semibold form-label mt-3">
                                                     <span class="required">Confirm Password</span>
@@ -171,10 +157,7 @@
                                                         </i>
                                                     </span>
                                                 </label>        
-                                                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                                                type="password"
-                                                                placeholder="Confirm Password"
-                                                                name="password_confirmation" required autocomplete="new-password" />
+                                                <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password" />
         
                                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                             </div>
@@ -197,7 +180,7 @@
                                     <div class="separator mb-6"></div>
                                     <div class="d-flex justify-content-end">
                                         <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</button>
-                                        <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
+                                        <button type="submit" id="companyFormSubmit" class="btn btn-primary">
                                             <span class="indicator-label">Save</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -211,4 +194,117 @@
             </div>
         </div>
     </div>
+    @section('script')
+    <script type="text/javascript">
+        $( document ).ready(function() 
+        {
+            $("#companyForm").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        remote: {
+                            url: '{{ route("tenants.check.fields") }}',
+                            type: 'get',
+                            async: false,
+                            dataType:'json',
+                            data: {
+                                user_id: function() {
+                                    // Return the ID value you want to pass
+                                    return $('#user_id').val();
+                                },
+                                name: function() {
+                                    return $('#name').val();
+                                },
+                                field_name: function() {
+                                    return 'name';
+                                }
+                            }
+                        }
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        remote: {
+                            url: '{{ route("tenants.check.fields") }}',
+                            type: 'get',
+                            async: false,
+                            dataType:'json',
+                            data: {
+                                user_id: function() {
+                                    // Return the ID value you want to pass
+                                    return $('#user_id').val();
+                                },
+                                name: function() {
+                                    return $('#email').val();
+                                },
+                                field_name: function() {
+                                    return 'email';
+                                }
+                            }
+                        }
+                    },
+                    domain_name: {
+                        required: true,
+                        remote: {
+                            url: '{{ route("tenants.check.domain") }}',
+                            type: 'get',
+                            async: false,
+                            dataType:'json',
+                            data: {
+                                user_id: function() {
+                                    // Return the ID value you want to pass
+                                    return $('#user_id').val();
+                                },
+                                domain_name: function() {
+                                    return $('#domain_name').val();
+                                }
+                            }
+                        }
+                    },
+                    password: {
+                        required: true,
+                    },
+                    password_confirmation: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+                },
+                messages: {
+                    name: {
+                        required: 'Company name is required!',
+                        remote: "Company name already exist!"
+                    },
+                    email: {
+                        required: 'Email is required!',
+                        email: 'Please enter a valid email address.',
+                        remote: "Email address already exist!"
+                    },
+                    domain_name: {
+                        required: 'Domain name is required!',
+                        remote: "Domain name already exist!"
+                    },
+                    password: {
+                        required: 'Password is required!',
+                    },
+                    password_confirmation: {
+                        required: 'Confirm password is required!',
+                        equalTo: 'Passwords do not match!'
+                    }
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                    // Show loading indication
+                    submitButton = document.getElementById('companyFormSubmit');
+                    submitButton.setAttribute('data-kt-indicator', 'on');
+                    submitButton.disabled = true;
+
+                    // Remove loading indication
+                    // submitButton = document.getElementById('qrCodeSubmit');
+                    // submitButton.removeAttribute('data-kt-indicator');
+                    // submitButton.disabled = false;
+                }
+            });
+        });
+    </script>
+    @endsection
 </x-app-layout>
