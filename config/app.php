@@ -67,6 +67,13 @@ return [
 
     'domain' => env('APP_DOMAIN', 'localhost'),
 
+    // CLOUDFLARE Settings
+
+    'cloudflare_api_baseurl' => env('CLOUDFLARE_API_BASEURL'),
+    'cloudflare_api_key' => env('CLOUDFLARE_API_KEY'),
+    'cloudflare_zone_id' => env('CLOUDFLARE_ZONE_ID'),
+    'cloudflare_server_ip' => env('CLOUDFLARE_SERVER_IP'),
+
     // Cpanel Settings
 
     'cpanel_url' => env('CPANEL_URL'),

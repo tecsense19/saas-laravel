@@ -124,7 +124,7 @@ class TenantController extends Controller
             // Create the database
             $dbResponse = $this->cpanel->createDatabase($tenant->id);
             if (!$dbResponse['status']) {
-                return redirect()->route('tenants.index')->with('error', $dbResponse['errors'][0]);
+                return redirect()->route('tenants.index')->with('error', $dbResponse['error']);
             }
             // Create the database user
             $userResponse = $this->cpanel->createDatabaseUser($dbUserName, $tenant->id);
