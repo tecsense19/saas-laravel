@@ -254,7 +254,7 @@ class TenantController extends Controller
                 }
             }
 
-            $tenant->delete();
+            Tenant::where('id', $tenantId)->delete();
 
              $response = [
                 'status' => true,

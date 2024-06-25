@@ -171,14 +171,20 @@ class CPanelApiService
             // Delete Database
             $response = $this->client->post($endpointDB, [
                 'json' => [
-                    'name' => $dbName
+                    'cpanel_jsonapi_apiversion' => 2, // Not needed for this API call
+                    'cpanel_jsonapi_module' => 'Mysql', // Not needed for this API call
+                    'cpanel_jsonapi_func' => 'delete_database', // Not needed for this API call
+                    'name' => $dbName, // Only send the dbname to delete
                 ],
             ]);
 
             // Delete User
             $response = $this->client->post($endpointUser, [
                 'json' => [
-                    'name' => $dbUserName
+                    'cpanel_jsonapi_apiversion' => 2, // Not needed for this API call
+                    'cpanel_jsonapi_module' => 'Mysql', // Not needed for this API call
+                    'cpanel_jsonapi_func' => 'delete_user', // Not needed for this API call
+                    'name' => $dbUserName, // Only send the dbname to delete
                 ],
             ]);
 
@@ -201,15 +207,16 @@ class CPanelApiService
 
         try {
             $response = $this->client->post($endpoint, [
-                'cpanel_jsonapi_apiversion' => 2,
-                'cpanel_jsonapi_module' => 'SubDomain',
-                'cpanel_jsonapi_func' => 'delsubdomain',
-                'args' => [
-                    'domain' => $subdomain,
+                'json' => [
+                    'cpanel_jsonapi_apiversion' => 2, // Not needed for this API call
+                    'cpanel_jsonapi_module' => 'SubDomain', // Not needed for this API call
+                    'cpanel_jsonapi_func' => 'delsubdomain', // Not needed for this API call
+                    'domain' => $subdomain, // Only send the domain to delete
                 ],
             ]);
 
             $data = json_decode($response->getBody(), true);
+            
             Log::info("Subdomain deleted: {$subdomain}", $data);
 
             return $data;
