@@ -239,8 +239,8 @@ class TenantController extends Controller
             $dbUserName = config('app.cpanel_user_name') . '_' . explode('-', $tenant->id)[0];
             
             // Cpanel API
-            $this->cpanel->deleteDatabaseUser($dbUserName);
             $this->cpanel->deleteDatabase($dbName);
+            $this->cpanel->deleteDatabaseUser($dbUserName);
 
             $cloudFlareService = new CloudFlareService();
             foreach ($tenant->domains as $dom)
