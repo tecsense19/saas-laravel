@@ -162,14 +162,22 @@ class CPanelApiService
         }
     }
 
-    public function deleteDatabaseUser($dbUserName)
+    public function deleteDatabaseUser($dbUserName, $dbName)
     {
         $endpoint = "/execute/Mysql/delete_user";
 
         try {
+            // Delete User
             $response = $this->client->post($endpoint, [
                 'json' => [
                     'name' => $dbUserName
+                ],
+            ]);
+
+            // Delete Database
+            $response = $this->client->post($endpoint, [
+                'json' => [
+                    'name' => $dbName
                 ],
             ]);
 
@@ -179,30 +187,6 @@ class CPanelApiService
             return $data;
         } catch (RequestException $e) {
             Log::error("Failed to delete database user: {$dbUserName}. Error: " . $e->getMessage());
-            return [
-                'status' => false,
-                'error' => $e->getMessage()
-            ];
-        }
-    }
-
-    public function deleteDatabase($dbName)
-    {
-        $endpoint = "/execute/Mysql/delete_database";
-
-        try {
-            $response = $this->client->post($endpoint, [
-                'json' => [
-                    'name' => $dbName
-                ],
-            ]);
-
-            $data = json_decode($response->getBody(), true);
-            Log::info("Database deleted: {$dbName}", $data);
-
-            return $data;
-        } catch (RequestException $e) {
-            Log::error("Failed to delete database: {$dbName}. Error: " . $e->getMessage());
             return [
                 'status' => false,
                 'error' => $e->getMessage()
