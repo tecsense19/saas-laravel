@@ -48,7 +48,7 @@ class HomeController extends BaseController
             $credentials = $request->only('email', 'password');
 
             // Extract company_id from request headers
-            $companyId = $request->header('company_id');
+            $companyId = $request->header('company-id');
 
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'Unauthorized'], 401);
@@ -148,7 +148,7 @@ class HomeController extends BaseController
             if($checkUser)
             {
                 // Create custom claims array with company_id
-                $customClaims = ['company_id' => $request->header('company_id'), 'user_id' => $checkUser->id];
+                $customClaims = ['company_id' => $request->header('company-id'), 'user_id' => $checkUser->id];
 
                 $tokenWithClaims = JWTAuth::claims($customClaims)->fromUser($checkUser); // Assuming $user is the authenticated user
 

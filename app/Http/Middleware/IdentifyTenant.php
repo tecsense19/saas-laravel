@@ -19,7 +19,7 @@ class IdentifyTenant
     {
         // $host = $request->getHost();
 
-        $tenantId = $request->header('company_id');
+        $tenantId = $request->header('company-id');
 
         $tokenString = $request->header('Authorization');
         if($tokenString)
