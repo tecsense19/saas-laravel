@@ -212,12 +212,15 @@ class CPanelApiService
     
     public function deleteSubdomain($subdomain)
     {
-        $endpoint = "/execute/SubDomain/delsubdomain";
+        $endpoint = "/json-api/cpanel";
 
         try {
             $response = $this->client->post($endpoint, [
-                'json' => [
-                    'domain' => $subdomain
+                'cpanel_jsonapi_apiversion' => 2,
+                'cpanel_jsonapi_module' => 'SubDomain',
+                'cpanel_jsonapi_func' => 'delsubdomain',
+                'args' => [
+                    'domain' => $subdomain,
                 ],
             ]);
 
