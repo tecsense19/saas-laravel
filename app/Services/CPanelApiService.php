@@ -131,8 +131,6 @@ class CPanelApiService
     public function createSubdomain($subdomain)
     {
         $endpoint = "/execute/SubDomain/addsubdomain";
-        $userName = $this->username . '_' . $username;
-        $databaseName = $this->username . '_' . $database;
 
         try {
             $response = $this->client->post($endpoint, [
