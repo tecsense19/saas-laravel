@@ -164,18 +164,28 @@ class CPanelApiService
 
     public function deleteDatabaseUser($dbUserName, $dbName)
     {
-        $endpoint = "/execute/Mysql/delete_user";
+        $endpointUser = "/execute/Mysql/delete_user";
+        $endpointRevoke = "/execute/Mysql/revoke_access_to_database";
+        $endpointDB = "/execute/Mysql/delete_database";
 
         try {
             // Delete User
-            $response = $this->client->post($endpoint, [
+            $response = $this->client->post($endpointUser, [
                 'json' => [
                     'name' => $dbUserName
                 ],
             ]);
+            
+            // Revoke Access
+            $response = $this->client->post($endpointRevoke, [
+                'json' => [
+                    'user' => env('DB_USERNAME'),
+                    'database' => $dbName
+                ],
+            ]);
 
             // Delete Database
-            $response = $this->client->post($endpoint, [
+            $response = $this->client->post($endpointDB, [
                 'json' => [
                     'name' => $dbName
                 ],
