@@ -115,6 +115,14 @@ class CPanelApiService
                 ],
             ]);
 
+            $response = $this->client->post($endpoint, [
+                'json' => [
+                    'user' => env('DB_USERNAME'),
+                    'database' => $databaseName,
+                    'privileges' => 'ALL PRIVILEGES',
+                ],
+            ]);
+
             $data = json_decode($response->getBody(), true);
             Log::info("Privileges set for user: {$userName} on database: {$databaseName}", $data);
 
