@@ -28,7 +28,7 @@
                     <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{{ $ten->email }}</td>
                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         @foreach($ten->domains as $dom)
-                        <div class="badge badge-light-success">{{ $dom->domain }}</div>
+                        <div class="badge badge-light-success"><a href="{{ $dom->domain }}" target="_blank">{{ $dom->domain }}</a></div>
                         @endforeach
                     </td>
                     <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{{ date('Y-m-d', strtotime($ten->created_at)) }}</td>
