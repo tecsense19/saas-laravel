@@ -57,6 +57,6 @@
                 redeem_list: "{{ url('redeem/list') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/redeem', 'filename' => 'redeem']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/redeem', 'filename' => 'redeem']) }}"></script>
     @endsection
 </x-tenant-app-layout>

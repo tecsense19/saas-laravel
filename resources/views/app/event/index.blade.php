@@ -273,6 +273,6 @@
                 city_list: "{{ url('get/cities') }}" 
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/event', 'filename' => 'event']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/event', 'filename' => 'event']) }}"></script>
     @endsection
 </x-tenant-app-layout>

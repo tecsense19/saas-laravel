@@ -60,6 +60,6 @@
                 video_name_check: "{{ url('video/check/title') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/video', 'filename' => 'video']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/video', 'filename' => 'video']) }}"></script>
     @endsection
 </x-tenant-app-layout>

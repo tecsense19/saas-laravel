@@ -121,6 +121,6 @@
                 qrcode_download: "{{ url('qrcode/download') }}",
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/qrcode', 'filename' => 'qrcode']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/qrcode', 'filename' => 'qrcode']) }}"></script>
     @endsection
 </x-tenant-app-layout>

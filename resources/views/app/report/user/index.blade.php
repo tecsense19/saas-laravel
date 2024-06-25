@@ -98,6 +98,6 @@
                 city_list: "{{ url('get/cities') }}",
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/report/user', 'filename' => 'userreport']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/report/user', 'filename' => 'userreport']) }}"></script>
     @endsection
 </x-tenant-app-layout>

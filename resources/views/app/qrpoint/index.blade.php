@@ -110,6 +110,6 @@
                 qrpoint_check: "{{ url('qrpoint/check') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/qrpoint', 'filename' => 'qrpoint']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/qrpoint', 'filename' => 'qrpoint']) }}"></script>
     @endsection
 </x-tenant-app-layout>

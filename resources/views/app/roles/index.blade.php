@@ -163,6 +163,6 @@
                 role_delete: "{{ url('roles/delete') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/roles', 'filename' => 'roles']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/roles', 'filename' => 'roles']) }}"></script>
     @endsection
 </x-tenant-app-layout>

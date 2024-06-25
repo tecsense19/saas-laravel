@@ -98,6 +98,6 @@
                 category_name_check: "{{ url('categories/check/name') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/category', 'filename' => 'category']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/category', 'filename' => 'category']) }}"></script>
     @endsection
 </x-tenant-app-layout>

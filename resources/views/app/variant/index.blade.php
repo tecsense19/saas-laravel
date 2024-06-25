@@ -115,6 +115,6 @@
                 variant_option_name_check: "{{ url('variant/check/option/name') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/variant', 'filename' => 'variant']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/variant', 'filename' => 'variant']) }}"></script>
     @endsection
 </x-tenant-app-layout>

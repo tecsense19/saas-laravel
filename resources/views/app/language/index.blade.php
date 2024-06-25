@@ -115,6 +115,6 @@
                 master_lang_save: "{{ url('language/master/store') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/language', 'filename' => 'language']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/language', 'filename' => 'language']) }}"></script>
     @endsection
 </x-tenant-app-layout>

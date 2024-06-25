@@ -58,6 +58,6 @@
                 feedback_delete: "{{ url('feedback/delete') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/feedback', 'filename' => 'feedback']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/feedback', 'filename' => 'feedback']) }}"></script>
     @endsection
 </x-tenant-app-layout>

@@ -105,6 +105,6 @@
                 hsnsac_name_check: "{{ url('hsnsac/check/name') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/hsnsac', 'filename' => 'hsnsac']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/hsnsac', 'filename' => 'hsnsac']) }}"></script>
     @endsection
 </x-tenant-app-layout>

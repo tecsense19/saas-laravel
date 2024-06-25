@@ -60,6 +60,6 @@
                 gallery_name_check: "{{ url('gallery/check/title') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/gallery', 'filename' => 'gallery']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/gallery', 'filename' => 'gallery']) }}"></script>
     @endsection
 </x-tenant-app-layout>

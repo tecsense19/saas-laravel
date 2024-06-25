@@ -152,6 +152,6 @@
                 permissions_check_title: "{{ url('permissions/check/title') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/permissions', 'filename' => 'permissions']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/permissions', 'filename' => 'permissions']) }}"></script>
     @endsection
 </x-tenant-app-layout>

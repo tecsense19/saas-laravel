@@ -57,6 +57,6 @@
                 product_delete: "{{ url('product/delete') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/product', 'filename' => 'product']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/product', 'filename' => 'product']) }}"></script>
     @endsection
 </x-tenant-app-layout>

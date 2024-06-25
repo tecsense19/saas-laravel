@@ -128,6 +128,6 @@
                 catalogue_name_check: "{{ url('catalogue/check/title') }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/catalogue', 'filename' => 'catalogue']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/catalogue', 'filename' => 'catalogue']) }}"></script>
     @endsection
 </x-tenant-app-layout>

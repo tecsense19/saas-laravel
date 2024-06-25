@@ -155,6 +155,6 @@
                 ids: "{{ $id }}"
             };
         </script>
-        <script src="{{ url('js', ['folder' => 'app/redeemhistory', 'filename' => 'redeemhistory']) }}"></script>
+        <script src="{{ route('js', ['folder' => 'app/redeemhistory', 'filename' => 'redeemhistory']) }}"></script>
     @endsection
 </x-tenant-app-layout>
