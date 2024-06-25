@@ -64,7 +64,7 @@ class IdentifyTenant
             $dbUserName = '';
             $dbPassword = '';
 
-            if(request()->getPort() != 80) {
+            if(request()->getPort() != 443) {
                 $dbName = 'tenant' . $tenant->id;
                 $dbUserName = env('DB_USERNAME', 'root');
                 $dbPassword = env('DB_PASSWORD', '');

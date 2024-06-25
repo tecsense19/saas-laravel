@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\{ User, Product, Event, VideoGallery, Feedback };
+use App\Models\{ User, Product, Event, VideoGallery, FeedBack };
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $totalEvent = Event::count();
         $totalVideo = VideoGallery::where('video_gallery_type', 'video')->count();
         $totalGallery = VideoGallery::where('video_gallery_type', 'gallery')->count();
-        $totalFeedback = Feedback::count();
+        $totalFeedback = FeedBack::count();
 
         return view('app.dashboard', compact('totalUser', 'totalProduct', 'totalEvent', 'totalVideo', 'totalGallery', 'totalFeedback'));
     }
