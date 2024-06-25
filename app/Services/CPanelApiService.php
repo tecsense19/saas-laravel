@@ -127,4 +127,32 @@ class CPanelApiService
             ];
         }
     }
+
+    public function createSubdomain($subdomain)
+    {
+        $endpoint = "/execute/SubDomain/addsubdomain";
+        $userName = $this->username . '_' . $username;
+        $databaseName = $this->username . '_' . $database;
+
+        try {
+            $response = $this->client->post($endpoint, [
+                'json' => [
+                    'domain' => $subdomain,
+                    'rootdomain' => env('APP_DOMAIN'),
+                    'dir' => 'public_html',
+                ],
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+            Log::info("Subdomain set : {$subdomain}", $data);
+
+            return $data;
+        } catch (RequestException $e) {
+            Log::error("Failed to set subdomain: {$subdomain} . Error: " . $e->getMessage());
+            return [
+                'status' => false,
+                'error' => $e->getMessage()
+            ];
+        }
+    }
 }

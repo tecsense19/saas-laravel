@@ -136,6 +136,11 @@ class TenantController extends Controller
             if (!$privResponse['status']) {
                 return redirect()->route('tenants.index')->with('error', $privResponse['errors'][0]);
             }
+            // Create a new sub domain
+            $subDomain = $this->cpanel->createSubdomain($subDomainName);
+            if (!$subDomain['status']) {
+                return redirect()->route('tenants.index')->with('error', $subDomain['errors'][0]);
+            }
 
             $dbName = '';
             $dbUserName = '';
