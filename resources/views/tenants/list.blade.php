@@ -15,7 +15,7 @@
     </thead>
     <tbody class="text-gray-600 fw-semibold">
         @if(isset($tenants) && count($tenants) > 0)
-            @foreach($tenants as $ten)
+            @foreach($tenants as $keys => $ten)
                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                     <td>
                         <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -33,18 +33,17 @@
                     </td>
                     <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{{ date('Y-m-d', strtotime($ten->created_at)) }}</td>
                     <td class="text-end">
-                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                        <i class="ki-duotone ki-down fs-5 m-0"></i></a>
-                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                            <div class="menu-item px-3">
-                                <a href="../../demo1/dist/apps/subscriptions/add.html" class="menu-link px-3">View</a>
-                            </div>
-                            <div class="menu-item px-3">
-                                <a href="../../demo1/dist/apps/subscriptions/add.html" class="menu-link px-3">Edit</a>
-                            </div>
-                            <div class="menu-item px-3">
-                                <a href="#" data-kt-subscriptions-table-filter="delete_row" class="menu-link px-3">Delete</a>
-                            </div>
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-active-light-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton_{{ $keys }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_{{ $keys }}">
+                                <!-- <li><a class="dropdown-item" href="#">View</a></li> -->
+                                <!-- <li><a class="dropdown-item" onclick="editEvent('{{ $ten }}', '{{ encrypt($ten->id) }}')" href="#">Edit</a></li> -->
+                                <li>
+                                    <a class="dropdown-item" onclick="deleteCompany('{{ encrypt($ten->id) }}')" href="#">Delete</a>
+                                </li>
+                            </ul>
                         </div>
                     </td>
                 </tr>

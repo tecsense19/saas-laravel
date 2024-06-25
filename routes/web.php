@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('tenants', TenantController::class);
     Route::post('tenants/list', [TenantController::class, 'list'])->name('tenants.list');
+    Route::post('tenants/delete', [TenantController::class, 'delete'])->name('tenants.delete');
     Route::get('tenants/check/fields', [TenantController::class, 'checkDbFields'])->name('tenants.check.fields');
     Route::get('tenants/check/domain', [TenantController::class, 'checkDomainName'])->name('tenants.check.domain');
 });

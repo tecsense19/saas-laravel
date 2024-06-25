@@ -223,4 +223,51 @@ class TenantController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function delete(Request $request)
+    {
+        $input = $request->all();
+        $tenantId = decrypt($input['tenant_id']);
+        $tenant = Tenant::with('domains')->find($tenantId);
+
+        if($tenant)
+        {
+            $dbName = config('app.cpanel_user_name') . '_' . $tenant->id;
+            $dbUserName = config('app.cpanel_user_name') . '_' . explode('-', $tenant->id)[0];
+            
+            // Cpanel API
+            $this->cpanel->deleteDatabaseUser($dbUserName);
+            $this->cpanel->deleteDatabase($dbName);
+
+            $cloudFlareService = new CloudFlareService();
+            foreach ($tenant->domains as $dom)
+            {
+                $this->cpanel->deleteSubdomain($dom->domain);
+                
+                // Create DNS record on CloudFlare
+                $getDNSData = $cloudFlareService->getExestingDomain($dom->domain);
+                if(count($getDNSData) > 0)
+                {
+                    $cloudFlareService->deleteDNSRecord($getDNSData[0]['id']);
+                }
+            }
+
+            $tenant->delete();
+
+             $response = [
+                'status' => true,
+                'message' => 'Company deleted successfully.', // Add your additional data here
+            ];
+            return response()->json($response);
+        }
+
+        $response = [
+            'status' => false,
+            'message' => 'Failed to delete Company.', // Add your additional data here
+        ];
+        return response()->json($response);
+    }
 }

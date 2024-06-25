@@ -31,7 +31,7 @@ class MigrateTenants extends Command
             $this->info("Migrating tenant: {$tenant->name}");
 
             // Set the tenant database connection
-            config(['database.connections.tenant.database' => 'tenant'.$tenant->id]);
+            config(['database.connections.tenant.database' => config('app.cpanel_user_name').'_'.$tenant->id]);
             \DB::purge('tenant');
             \DB::reconnect('tenant');
 

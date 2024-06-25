@@ -290,6 +290,47 @@
                 $('#search').val('');
                 tenantList();
             });
+
+            function deleteCompany(tenantId)
+            {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete this company including databases and subdomains.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    confirmButtonColor: '#fe7d22',
+                    cancelButtonText: 'No',
+                    cancelButtonColor: '#d33',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type:'post',
+                            headers: {'X-CSRF-TOKEN': jQuery('input[name=_token]').val()},
+                            url:'{{ route("tenants.delete") }}',
+                            data: { tenant_id: tenantId },
+                            success:function(response)
+                            {
+                                Swal.fire({
+                                    title: response.status ? 'Success' : 'Error',
+                                    text: response.message,
+                                    icon: response.status ? 'success' : 'error',
+                                    confirmButtonColor: response.status ? '#fe7d22' : '#d33',
+                                    confirmButtonText: 'OK',
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        tenantList();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
         </script>
     @endsection
 </x-app-layout>

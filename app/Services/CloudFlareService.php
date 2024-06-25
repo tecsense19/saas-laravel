@@ -22,6 +22,33 @@ class CloudFlareService
         $this->serverIp = config('app.cloudflare_server_ip'); // Zone ID
     }
 
+    public function getExestingDomain($subdomain)
+    {
+        try {
+            $response = $this->client->request('GET', "zones/{$this->zoneId}/dns_records", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->apiKey,
+                ],
+                'query' => [
+                    'name' => $subdomain,
+                ],
+            ]);
+
+            $dnsRecords = json_decode($response->getBody()->getContents(), true);
+
+            // If no DNS records are found for the subdomain, it's available
+            return $dnsRecords['result'];
+        } catch (RequestException $e) {
+            // Log the error or handle it as necessary
+            $this->handleRequestException($e);
+            return false;
+        } catch (\Exception $e) {
+            // Handle any other exceptions
+            \Log::error("Unexpected error: " . $e->getMessage());
+            return false;
+        }
+    }
+
     public function isSubdomainAvailable($subdomain)
     {
         try {
@@ -93,6 +120,30 @@ class CloudFlareService
             }
         } else {
             \Log::error("Request failed without a response: " . $e->getMessage());
+        }
+    }
+
+    public function deleteDNSRecord($dnsRecordId)
+    {
+        try {
+            $response = $this->client->request('DELETE', "zones/{$this->zoneId}/dns_records/{$dnsRecordId}", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->apiKey,
+                ]
+            ]);
+
+            $dnsRecords = json_decode($response->getBody()->getContents(), true);
+
+            // If no DNS records are found for the subdomain, it's available
+            return count($dnsRecords['result']) > 0 ? true : false;
+        } catch (RequestException $e) {
+            // Log the error or handle it as necessary
+            $this->handleRequestException($e);
+            return false;
+        } catch (\Exception $e) {
+            // Handle any other exceptions
+            \Log::error("Unexpected error: " . $e->getMessage());
+            return false;
         }
     }
 }
