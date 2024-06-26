@@ -83,7 +83,9 @@
         </div> <!-- container -->
     </div> <!-- header navbar -->
 
-    @include('front.layouts.partials.hero')
+    @if(!request()->is('customer/details/*'))
+        @include('front.layouts.partials.hero')
+    @endif
 </section>
 
 <!--====== HEADER PART ENDS ======-->

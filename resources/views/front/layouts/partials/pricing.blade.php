@@ -38,7 +38,7 @@
                                         <div class="pricing_content mt-6">
                                             <span class="pricing_price font-bold text-black text-4xl">$19.00</span>
                                             <p class="mt-4 leading-9">Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-                                            <a href="" class="main-btn pricing_btn">Choose Plan</a>
+                                            <a href="{{ route('customer.details.form', ['plan_id' => encrypt(1)]) }}" class="main-btn pricing_btn">Choose Plan</a>
                                         </div>
                                     </div>  <!-- single pricing -->
                                 </div>
@@ -54,7 +54,7 @@
                                         <div class="pricing_content mt-6">
                                             <span class="pricing_price font-bold text-black text-4xl">$39.00</span>
                                             <p class="mt-4 leading-9">Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-                                            <a href="" class="main-btn pricing_btn">Choose Plan</a>
+                                            <a href="{{ route('customer.details.form', ['plan_id' => encrypt(2)]) }}" class="main-btn pricing_btn">Choose Plan</a>
                                         </div>
                                     </div>  <!-- single pricing -->
                                 </div>
@@ -70,7 +70,7 @@
                                         <div class="pricing_content mt-6">
                                             <span class="pricing_price font-bold text-black text-4xl">$99.00</span>
                                             <p class="mt-4 leading-9">Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-                                            <a href="" class="main-btn pricing_btn">Choose Plan</a>
+                                            <a href="{{ route('customer.details.form', ['plan_id' => encrypt(3)]) }}" class="main-btn pricing_btn">Choose Plan</a>
                                         </div>
                                     </div>  <!-- single pricing -->
                                 </div>
@@ -89,7 +89,7 @@
                                         <div class="pricing_content mt-6">
                                             <span class="pricing_price font-bold text-black text-4xl">$99.00</span>
                                             <p class="mt-4 leading-9">Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-                                            <a href="" class="main-btn pricing_btn">Choose Plan</a>
+                                            <a href="{{ route('customer.details.form', ['plan_id' => encrypt(4)]) }}" class="main-btn pricing_btn">Choose Plan</a>
                                         </div>
                                     </div>  <!-- single pricing -->
                                 </div>
@@ -105,7 +105,7 @@
                                         <div class="pricing_content mt-6">
                                             <span class="pricing_price font-bold text-black text-4xl">$199.00</span>
                                             <p class="mt-4 leading-9">Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-                                            <a href="" class="main-btn pricing_btn">Choose Plan</a>
+                                            <a href="{{ route('customer.details.form', ['plan_id' => encrypt(5)]) }}" class="main-btn pricing_btn">Choose Plan</a>
                                         </div>
                                     </div>  <!-- single pricing -->
                                 </div>
@@ -121,7 +121,7 @@
                                         <div class="pricing_content mt-6">
                                             <span class="pricing_price font-bold text-black text-4xl">$499.00</span>
                                             <p class="mt-4 leading-9">Lorem ipsum dolor sit am consetetur sadi aliquyam erat sed diam voluptua vero eos  accusam et justo duo dolores </p>
-                                            <a href="" class="main-btn pricing_btn">Choose Plan</a>
+                                            <a href="{{ route('customer.details.form', ['plan_id' => encrypt(6)]) }}" class="main-btn pricing_btn">Choose Plan</a>
                                         </div>
                                     </div>  <!-- single pricing -->
                                 </div>

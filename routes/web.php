@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TenantController;
 
@@ -18,6 +19,10 @@ use App\Http\Controllers\TenantController;
 Route::get('/', function () {
     return view('front.welcome');
 });
+
+Route::get('/customer/details/{plan_id}', [HomeController::class, 'showCustomerForm'])->name('customer.details.form');
+Route::post('/customer/store', [HomeController::class, 'storeCustomer'])->name('customer.store');
+Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
