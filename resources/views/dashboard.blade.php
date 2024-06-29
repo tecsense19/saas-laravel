@@ -34,7 +34,7 @@
                             <div class="card-header pt-5">
                                 <div class="card-title d-flex flex-column">
                                     <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">69</span>
-                                    <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Active Projects</span>
+                                    <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Active Companies</span>
                                 </div>
                             </div>
                             <div class="card-body d-flex align-items-end pt-0">
@@ -53,7 +53,7 @@
                             <div class="card-header pt-5">
                                 <div class="card-title d-flex flex-column">
                                     <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">357</span>
-                                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Professionals</span>
+                                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Deactive Companies</span>
                                 </div>
                             </div>
                             <div class="card-body d-flex flex-column justify-content-end pe-0">

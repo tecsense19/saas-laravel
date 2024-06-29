@@ -15,6 +15,7 @@
         "php-open-source-saver/jwt-auth": "^2.1",
         "spatie/laravel-permission": "^6.4",
         "stancl/tenancy": "^3.8",
+        "stevebauman/location": "^7.3",
         "zalanihir/country-state-city": "^1.0",
         "zanysoft/laravel-zip": "^2.0"
     },

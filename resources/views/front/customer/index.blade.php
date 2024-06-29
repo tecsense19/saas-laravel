@@ -5,6 +5,7 @@
                 <div class="card-body pt-5">
                     <form method="POST" class="form" action="{{ route('customer.store') }}" id="companyForm" enctype='multipart/form-data'>
                         @csrf
+                        <input type="hidden" name="plan_id" value="{{ $planId }}" />
                         <h3 class="mb-5">Customer Details</h3>
                         <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-1">
                             <div class="fv-row mb-7 d-flex flex-wrap">
@@ -119,7 +120,7 @@
                     name: {
                         required: true,
                         remote: {
-                            url: '{{ route("tenants.check.fields") }}',
+                            url: '{{ route("check.fields") }}',
                             type: 'get',
                             async: false,
                             dataType:'json',
@@ -141,7 +142,7 @@
                         required: true,
                         email: true,
                         remote: {
-                            url: '{{ route("tenants.check.fields") }}',
+                            url: '{{ route("check.fields") }}',
                             type: 'get',
                             async: false,
                             dataType:'json',
@@ -162,7 +163,7 @@
                     domain_name: {
                         required: true,
                         remote: {
-                            url: '{{ route("tenants.check.domain") }}',
+                            url: '{{ route("check.domain") }}',
                             type: 'get',
                             async: false,
                             dataType:'json',

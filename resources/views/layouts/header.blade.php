@@ -2867,7 +2867,7 @@
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                            <a href="{{ route('profile.edit') }}" class="menu-link px-5">My Profile</a>
                         </div>
                         <div class="menu-item px-5">
                             <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">

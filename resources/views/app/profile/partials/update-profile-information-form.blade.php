@@ -7,6 +7,7 @@
         @csrf
         @method('patch')
         <h3 class="mb-5">User Details</h3>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Update your account's profile information and email address.</p>
         <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
             <div class="col">
                 <div class="fv-row mb-7">

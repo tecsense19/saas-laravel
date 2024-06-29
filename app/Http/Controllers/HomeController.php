@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function storeCustomer(Request $request)
     {
         $input = $request->all();
-        
+        session(['step1' => $input]);
         return redirect()->route('payment')->with('customer', $input);
     }
 
@@ -33,5 +33,17 @@ class HomeController extends Controller
         $input = $request->all();
 
         return view('front.customer.payment');
+    }
+
+    public function makePaymentRequest(Request $request)
+    {
+        $input = $request->all();
+        echo "<pre>"; 
+        print_r($input); 
+        echo "<br>";
+        print_r(session('step1'));
+        die();
+
+        $request->session()->forget(['step1']);
     }
 }

@@ -44,6 +44,117 @@ License: For each use you must have a valid license purchased only from above li
                 font-weight: bold;
                 color: red;
             }
+
+			.select2-container--default .select2-selection--single {
+				border: none !important;
+			}
+			.select2-container--default .select2-selection--single .select2-selection__arrow {
+				top: 12px !important;
+			}
+			.select2-container--default .select2-selection--single .select2-selection__rendered {
+				display: block;
+				width: 100%;
+				padding: .775rem 1rem !important;
+				font-size: 1.1rem;
+				font-weight: 500;
+				line-height: 26px !important;
+				color: #5E6278;
+				background-color: #F9F9F9;
+				background-clip: padding-box;
+				border: 1px solid #E1E3EA;
+				appearance: none;
+				border-radius: .475rem;
+				box-shadow: false;
+				transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+				border: none !important;
+				margin-top: 0.25rem !important;
+			}
+			.select2-container .select2-selection--single .select2-selection__rendered {
+
+			}
+			.select2-container .select2-selection--single {
+				height: 45px !important;
+				border: none !important;
+			}
+			.select2-container--default .select2-search--dropdown .select2-search__field {
+				background-color: var(--bs-body-bg) !important;
+				padding: .55rem .75rem !important;
+				color: var(--bs-gray-700) !important;
+				font-size: .95rem !important;
+				border: 1px solid var(--bs-gray-300) !important;
+				border-radius: .425rem !important;
+				outline: 0 !important;
+			}
+			.select2-container--open .select2-dropdown--below {
+				border: 0;
+				box-shadow: var(--bs-dropdown-box-shadow);
+				border-radius: .475rem;
+				padding: 1rem 0;
+				background-color: var(--bs-dropdown-bg);
+			}
+			.select2-container--default .select2-results__option--highlighted[aria-selected] {
+				background-color: var(--bs-component-hover-bg) !important;
+				color: var(--bs-component-hover-color) !important;
+				transition: color .2s ease !important;
+			}
+			.select2-container {
+				z-index: 99
+			}
+
+			.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+				color: #999;
+				cursor: pointer;
+				display: inline-block;
+				font-weight: bold;
+				margin-right: 5px !important;
+			}
+
+			.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+				background-color: transparent;
+				border: none;
+				/* border-right: 1px solid #aaa; */
+				border-top-left-radius: 4px;
+				border-bottom-left-radius: 4px;
+				color: #999;
+				cursor: pointer;
+				font-size: 1em;
+				font-weight: 700;
+				margin: 0px 0px !important;
+				position: unset !important;
+			}
+			
+			/* Tooltip */
+
+			.tooltip-container {
+				position: relative;
+				cursor: pointer; /* Optional: Change cursor to pointer */
+			}
+
+			.tooltip-text {
+				visibility: hidden;
+				background-color: #333;
+				color: #fff;
+				text-align: center;
+				border-radius: 6px;
+				padding: 5px 10px; /* Adjust padding as needed */
+				position: absolute;
+				z-index: 1;
+				bottom: 125%;
+				left: 50%;
+				transform: translateX(-50%);
+				opacity: 0;
+				transition: opacity 0.3s;
+				/* white-space: nowrap; */
+				width: 350px; /* Set width to auto */
+			}
+
+			.tooltip-container:hover .tooltip-text {
+				visibility: visible;
+				opacity: 1;
+			}
+
+
+			/* Tooltip */
 		</style>
 	</head>
 	<!--end::Head-->
@@ -121,6 +232,10 @@ License: For each use you must have a valid license purchased only from above li
 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js" integrity="sha512-foIijUdV0fR0Zew7vmw98E6mOWd9gkGWQBWaoA1EOFAx+pY+N8FmmtIYAVj64R98KeD2wzZh1aHK0JSpKmRH8w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		@yield('script')
     </body>
 </html>
